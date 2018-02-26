@@ -1,0 +1,68 @@
+version: '2.0'
+
+services:
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./public:/opt/arkav/public:ro
+    depends_on:
+      - php
+      - asset_builder
+
+  php:
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    volumes:
+      - .:/opt/arkav
+      - /opt/arkav/vendor/
+      - /opt/arkav/node_modules/
+      - app_storage:/opt/arkav/storage # Uploads and data storage
+      - app_cache:/opt/arkav/storage # Laravel cache directory
+    ports:
+      - "9000:9000"
+    env_file:
+      - .env.docker
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql
+    restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=[mysql_root_password]
+      - MYSQL_DATABASE=arkav
+      - MYSQL_USER=arkav
+      - MYSQL_PASSWORD=[mysql_password]
+
+  asset_builder:
+    build:
+      context: ./
+      dockerfile: asset_builder.dockerfile
+    volumes:
+      - ./webpack.mix.js:/opt/arkav/webpack.mix.js:ro
+      - ./resources/assets:/opt/arkav/resources/assets:ro
+      - ./public:/opt/arkav/public
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+     - PMA_HOST=mysql
+    restart: always
+    ports:
+     - 1234:80
+
+volumes:
+  app_storage:
+    driver: local
+  app_cache:
+    driver: local
+  mysql_data:
+    driver: local
+
