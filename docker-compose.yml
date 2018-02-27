@@ -8,7 +8,7 @@ services:
       - "8080:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./public:/opt/arkav/public:ro
+      - ./public:/opt/etaromangan/public:ro
     depends_on:
       - php
       - asset_builder
@@ -18,13 +18,13 @@ services:
       context: ./
       dockerfile: app.dockerfile
     volumes:
-      - .:/opt/arkav
-      - /opt/arkav/vendor/
-      - /opt/arkav/node_modules/
-      - app_storage:/opt/arkav/storage # Uploads and data storage
-      - app_cache:/opt/arkav/storage # Laravel cache directory
+      - .:/opt/etaromangan
+      - /opt/etaromangan/vendor/
+      - /opt/etaromangan/node_modules/
+      - app_storage:/opt/etaromangan/storage # Uploads and data storage
+      - app_cache:/opt/etaromangan/storage # Laravel cache directory
     ports:
-      - "9000:9000"
+      - "8000:9000"
     env_file:
       - .env.docker
     depends_on:
@@ -37,8 +37,8 @@ services:
       - mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=[mysql_root_password]
-      - MYSQL_DATABASE=arkav
-      - MYSQL_USER=arkav
+      - MYSQL_DATABASE=etaromangan
+      - MYSQL_USER=etaromangan
       - MYSQL_PASSWORD=[mysql_password]
 
   asset_builder:
@@ -46,9 +46,9 @@ services:
       context: ./
       dockerfile: asset_builder.dockerfile
     volumes:
-      - ./webpack.mix.js:/opt/arkav/webpack.mix.js:ro
-      - ./resources/assets:/opt/arkav/resources/assets:ro
-      - ./public:/opt/arkav/public
+      - ./webpack.mix.js:/opt/etaromangan/webpack.mix.js:ro
+      - ./resources/assets:/opt/etaromangan/resources/assets:ro
+      - ./public:/opt/etaromangan/public
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
