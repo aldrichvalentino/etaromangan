@@ -8,6 +8,8 @@
 <p align="center">
   <a href="https://travis-ci.org/aldrichvalentino/etaromangan"><img src="https://api.travis-ci.org/aldrichvalentino/etaromangan.svg?branch=master" alt="travis"></a>
   <a href="https://www.php-fig.org/psr/psr-2/"><img src="https://img.shields.io/badge/code--style-PSR2-blue.svg" alt="PSR2 Coding Standard for PHP"></a>
+  <a href="https://david-dm.org/aldrichvalentino/etaromangan" title="dependencies status"><img src="https://david-dm.org/aldrichvalentino/etaromangan/status.svg"/></a>
+  <a href="https://david-dm.org/aldrichvalentino/etaromangan?type=dev" title="devDependencies status"><img src="https://david-dm.org/aldrichvalentino/etaromangan/dev-status.svg"/></a>
 </p>
 
 <p align="center">
