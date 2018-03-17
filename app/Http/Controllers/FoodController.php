@@ -14,10 +14,15 @@ class FoodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $food = new Food();
-        return view('foods/foods', ['foods' => $food->all()]);
+        $halal = $request->query('halal');
+        
+        if($halal == null){
+            return view('foods/foods', ['foods' => Food::all()]);
+        } else {
+            return view('foods/foods', ['foods' => Food::where('halal', $halal)->get()]);
+        }
     }
 
     /**
@@ -56,8 +61,7 @@ class FoodController extends Controller
                         ->select('restaurants.name', 'restaurants.address', 'restaurants.phone')
                         ->get();
         return view('foods/foodDetail', ['food' => Food::find($id), 'restaurants' => $restaurants]);
-        // return $restaurants;
-    }
+     }
 
     /**
      * Show the form for editing the specified resource.

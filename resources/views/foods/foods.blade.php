@@ -2,14 +2,22 @@
 
 @section('content')
 
-@foreach($foods as $food)
+@if (count($foods) === 0)
 
-<pre>
-    {{ $food }}
-    <br/>
-    <a href="{{ url('foods', ['id' => $food->id]) }}">test</a>
-</pre>
+    <h1>Not found</h1>
 
-@endforeach
+@else 
+
+    @foreach($foods as $food)
+
+    <pre>
+        {{ $food }}
+        <br/>
+        <a href="{{ url('foods', ['id' => $food->id]) }}">Lihat</a>
+    </pre>
+
+    @endforeach
+
+@endif
 
 @endsection
