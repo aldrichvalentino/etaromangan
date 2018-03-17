@@ -14,7 +14,7 @@
         {{ $restaurant->name }}
         {{ $restaurant->address }}
         {{ $restaurant->phone }}
-        <a href="">Pilih</a>
+        <a href="{{ url('orders', ['create']) }}?food_id={{ $food->id }}&restaurant_id={{ $restaurant->id }}">Pilih</a>
     </div>
 @endforeach
 

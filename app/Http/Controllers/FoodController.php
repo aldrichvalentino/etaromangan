@@ -58,7 +58,7 @@ class FoodController extends Controller
                         ->join('supplies', 'supplies.restaurant_id', '=', 'restaurants.id')
                         ->join('foods', 'supplies.food_id', '=', 'foods.id')
                         ->where('foods.id', '=', $id)
-                        ->select('restaurants.name', 'restaurants.address', 'restaurants.phone')
+                        ->select('restaurants.id', 'restaurants.name', 'restaurants.address', 'restaurants.phone')
                         ->get();
         return view('foods/foodDetail', ['food' => Food::find($id), 'restaurants' => $restaurants]);
      }

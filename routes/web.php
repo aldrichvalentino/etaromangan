@@ -26,3 +26,4 @@ Route::get('/menu', function(){
 
 /* Resource routes */
 Route::resource('foods', 'FoodController');
+Route::resource('orders', 'OrderController');
