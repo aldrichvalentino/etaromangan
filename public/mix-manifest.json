@@ -1,0 +1,22 @@
+{
+    "/js/app-admin.js": "/js/app-admin.js",
+    "/js/bootstrap.js": "/js/bootstrap.js",
+    "/css/app.css": "/css/app.css",
+    "/css/app-admin.css": "/css/app-admin.css",
+    "/js/app.js": "/js/app.js",
+    "/js/views/main.js": "/js/views/main.js",
+    "/js/pace.min.js": "/js/pace.min.js",
+    "/js/jquery.easing.min.js": "/js/jquery.easing.min.js",
+    "/js/jquery.waypoints.min.js": "/js/jquery.waypoints.min.js",
+    "/js/owl.carousel.min.js": "/js/owl.carousel.min.js",
+    "/js/jquery.magnific-popup.min.js": "/js/jquery.magnific-popup.min.js",
+    "/js/jquery.timepicker.min.js": "/js/jquery.timepicker.min.js",
+    "/js/jquery.animateNumber.min.js": "/js/jquery.animateNumber.min.js",
+    "/js/bootstrap-datepicker.min.js": "/js/bootstrap-datepicker.min.js",
+    "/css/owl.carousel.min.css": "/css/owl.carousel.min.css",
+    "/css/owl.theme.default.min.css": "/css/owl.theme.default.min.css",
+    "/css/magnific-popup.css": "/css/magnific-popup.css",
+    "/css/jquery.timepicker.min.css": "/css/jquery.timepicker.min.css",
+    "/css/bootstrap-datepicker.min.css": "/css/bootstrap-datepicker.min.css",
+    "/css/animate.min.css": "/css/animate.min.css"
+}
