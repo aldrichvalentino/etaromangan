@@ -2,8 +2,10 @@
 
 @section('content')
 
-@foreach($orders as $order)
+@forelse($orders as $order)
     <div>{{ $order }}</div>
-@endforeach
+@empty
+    <h1>Not Found</h1>
+@endforelse
 
 @endsection

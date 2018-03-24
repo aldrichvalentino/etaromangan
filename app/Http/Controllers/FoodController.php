@@ -75,7 +75,6 @@ class FoodController extends Controller
                                 'restaurants.phone',
                                 'foods.price')
                         ->distinct()->get();
-        $results = Food::find($id);
         // TODO: make 404 if null
         return view('foods/foodDetail', ['food' => $results, 'restaurants' => $restaurants]);
      }

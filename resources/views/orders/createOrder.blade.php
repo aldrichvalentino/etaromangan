@@ -5,6 +5,10 @@
 <form action="{{ url('orders') }}" method="post">
     {{ csrf_field() }}
     <input type="hidden" value="{{ $food_id }}" name="food_id" />
+    @if($errors->has('food_id'))
+        <div>{{ $errors->first('food_id') }}</div>
+    @endif
+
     <input type="hidden" value="{{ $restaurant_id }}" name="restaurant_id" />
     
     <label>Quantity : <input type="number" value="0" id="quantity" name="quantity" /></label><br/>
@@ -35,7 +39,7 @@
     var totalPrice = document.getElementById('total');
     var quantityInput = document.getElementById('quantity');
     quantityInput.onchange = function(){
-        totalPrice.innerText = quantityInput.value;
+        totalPrice.innerText = quantityInput.value * {{ $price[0]->price }};
     }
 </script>
 

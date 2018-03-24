@@ -38,8 +38,15 @@ class OrderController extends Controller
         if($food_id == null || $restaurant_id == null){
             return redirect('menu');
         }
+        $price = DB::table('foods')
+                    ->where([
+                        ['id', '=', $request->food_id],
+                        ['restaurant_id', '=', $request->restaurant_id]
+                    ])
+                    ->select('price')
+                    ->get();
         
-        return view('orders/createOrder', ['food_id' => $food_id, 'restaurant_id' => $restaurant_id]);
+        return view('orders/createOrder', ['food_id' => $food_id, 'restaurant_id' => $restaurant_id, 'price' => $price]);
     }
 
     /**
@@ -50,12 +57,15 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $supplies = DB::table('supplies')
+        $price = DB::table('foods')
                     ->where([
-                        ['food_id', '=', $request->food_id],
+                        ['id', '=', $request->food_id],
                         ['restaurant_id', '=', $request->restaurant_id]
-                    ])->count();
-        if($supplies === 0){
+                    ])
+                    ->select('price')
+                    ->get();
+
+        if($price->isEmpty()){
             return back()->withInput()->withErrors(['food_id' => 'Food and restaurant does not match']);
         } else {
             $userId = Auth::id();
@@ -79,7 +89,7 @@ class OrderController extends Controller
             $order->quantity = $request->quantity;
             $order->status = "processed";
             $order->address = $request->address;
-            $order->total = $request->quantity * 50; //TODO: change with real price
+            $order->total = $request->quantity * $price[0]->price;
 
             $order->save();
             return redirect('orders');
