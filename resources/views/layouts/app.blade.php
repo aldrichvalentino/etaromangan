@@ -51,5 +51,6 @@
     <script type="text/javascript" src="{!! asset('js/owl.carousel.min.js') !!}"></script>
     <script type="text/javascript" src="{!! asset('js/jquery.animateNumber.min.js') !!}"></script>
     <script type="text/javascript" src="{{ mix('/js/app.js') }}"></script>
+    @yield('script')
 </body>
 </html>

@@ -12,6 +12,6 @@ class Food extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'price', 'halal'
+        'name', 'price', 'type'
     ];
 }

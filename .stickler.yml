@@ -1,7 +1,7 @@
 linters:
     phpcs:
         standard: PSR2
-        ignore: '*/vendor/*,*/node_modules/*,*/storage/*,*/cache/*'
+        ignore: '*/vendor/*,*/node_modules/*,*/storage/*,*/cache/*,*/database/*'
         extensions: 'php'
         tab_width: 4
         fixer: true
