@@ -14,11 +14,17 @@ class CreateFoodsTable extends Migration
     public function up()
     {
         Schema::create('foods', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('id')->unsigned();
+            $table->integer('restaurant_id')->unsigned();
             $table->string('name', 15);
             $table->string('price', 8);
-            $table->boolean('halal');
+            $table->string('type', 8);
             $table->timestamps();
+
+            $table->foreign('restaurant_id')
+                ->references('id')->on('restaurants')
+                ->onDelete('restrict');
+            $table->primary(['id','restaurant_id']);
         });
     }
 

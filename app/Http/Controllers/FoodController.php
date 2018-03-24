@@ -16,12 +16,23 @@ class FoodController extends Controller
      */
     public function index(Request $request)
     {
-        $halal = $request->query('halal');
+        $halal = $request->query('type');
         
         if($halal == null){
-            return view('foods/foods', ['foods' => Food::all()]);
+            $results = DB::table('foods')
+                    ->select('name', 'type', 'id')
+                    ->orderBy('name')
+                    ->distinct()
+                    ->get();
+            return view('foods/foods', ['foods' => $results]);
         } else {
-            return view('foods/foods', ['foods' => Food::where('halal', $halal)->get()]);
+            $results = DB::table('foods')
+                    ->select('name', 'type', 'id')
+                    ->where('type', $halal)
+                    ->orderBy('name')
+                    ->distinct()
+                    ->get();
+            return view('foods/foods', ['foods' => $results]);
         }
     }
 
@@ -49,18 +60,24 @@ class FoodController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
+        $results = Food::find($id);
         $restaurants = DB::table('restaurants')
-                        ->join('supplies', 'supplies.restaurant_id', '=', 'restaurants.id')
-                        ->join('foods', 'supplies.food_id', '=', 'foods.id')
-                        ->where('foods.id', '=', $id)
-                        ->select('restaurants.id', 'restaurants.name', 'restaurants.address', 'restaurants.phone')
-                        ->get();
-        return view('foods/foodDetail', ['food' => Food::find($id), 'restaurants' => $restaurants]);
+                        ->join('foods', 'foods.restaurant_id', '=', 'restaurants.id')
+                        ->where('foods.name', $results->name)
+                        ->select('restaurants.id', 
+                                'restaurants.name', 
+                                'restaurants.address', 
+                                'restaurants.phone',
+                                'foods.price')
+                        ->distinct()->get();
+        $results = Food::find($id);
+        // TODO: make 404 if null
+        return view('foods/foodDetail', ['food' => $results, 'restaurants' => $restaurants]);
      }
 
     /**

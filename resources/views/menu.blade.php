@@ -2,8 +2,8 @@
 
 @section('content')
 
-<a href="{{ url('foods') }}?halal=1">Halal</a>
+<a href="{{ url('foods') }}?type=halal">Halal</a>
 <br/>
-<a href="{{ url('foods') }}?halal=0">Non halal</a>
+<a href="{{ url('foods') }}?type=nonhalal">Non halal</a>
 
 @endsection

@@ -3,8 +3,7 @@
 @section('content')
 
 {{ $food->name }}
-{{ $food->halal }}
-{{ $food->price }}
+{{ $food->type }}
 <br/>
 <br/>
 
@@ -14,6 +13,7 @@
         {{ $restaurant->name }}
         {{ $restaurant->address }}
         {{ $restaurant->phone }}
+        {{ $restaurant->price }}
         <a href="{{ url('orders', ['create']) }}?food_id={{ $food->id }}&restaurant_id={{ $restaurant->id }}">Pilih</a>
     </div>
 @endforeach
