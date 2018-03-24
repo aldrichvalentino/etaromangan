@@ -17,7 +17,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /* Static routes */
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.welcome');
 });
 
 Route::get('/menu', function () {
@@ -25,6 +25,10 @@ Route::get('/menu', function () {
 });
 
 Route::get('/menu/{type}', 'FoodController@getFoodsByType');
+
+Route::get('/dashboard', function () {
+    return view('pages.dashboard');
+})->name('dashboard');
 
 /* Resource routes */
 Route::resource('foods', 'FoodController');

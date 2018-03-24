@@ -13,6 +13,9 @@ RUN chown -R www-data:www-data /opt/etaromangan
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
+# install parallel install composer
+RUN composer global require hirak/prestissimo
+
 # Install app dependencies (done before copying app source to optimize caching)
 COPY composer.json /opt/etaromangan/
 COPY composer.lock /opt/etaromangan/

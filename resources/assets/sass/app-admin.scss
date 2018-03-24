@@ -1,0 +1,23 @@
+
+// Fonts
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import '~flag-icon-css/sass/flag-icon';
+
+@import '~font-awesome/scss/font-awesome';
+
+@import '~simple-line-icons/scss/simple-line-icons';
+
+// Override Boostrap variables
+@import "bootstrap-variables";
+
+// Override core variables
+@import "core-variables";
+
+// Import core styles
+@import "core/core";
+
+// Custom styles
+@import "custom";
