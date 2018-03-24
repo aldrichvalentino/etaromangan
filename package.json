@@ -10,13 +10,25 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "animate.css": "^3.6.1",
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
-        "popper.js": "^1.12",
+        "bootstrap-datepicker": "^1.7.1",
+        "chart.js": "2.7.1",
         "cross-env": "^5.1",
+        "flag-icon-css": "^2.9",
+        "font-awesome": "^4.7",
         "jquery": "^3.2",
+        "jquery.animate-number": "0.0.14",
+        "jquery.easing": "^1.4.1",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
-        "vue": "^2.5.7"
+        "magnific-popup": "^1.1.0",
+        "owl.carousel": "^2.3.2",
+        "pace-progress": "^1.0.2",
+        "popper.js": "^1.12",
+        "simple-line-icons": "^2.4.1",
+        "timepicker": "^1.11.12",
+        "waypoints": "^4.0.1"
     }
 }
