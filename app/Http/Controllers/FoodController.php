@@ -18,7 +18,7 @@ class FoodController extends Controller
     {
         $halal = $request->query('type');
         
-        if($halal == null){
+        if ($halal == null) {
             $results = DB::table('foods')
                     ->select('name', 'type', 'id')
                     ->orderBy('name')
@@ -69,15 +69,17 @@ class FoodController extends Controller
         $restaurants = DB::table('restaurants')
                         ->join('foods', 'foods.restaurant_id', '=', 'restaurants.id')
                         ->where('foods.name', $results->name)
-                        ->select('restaurants.id', 
-                                'restaurants.name', 
-                                'restaurants.address', 
-                                'restaurants.phone',
-                                'foods.price')
+                        ->select(
+                            'restaurants.id',
+                            'restaurants.name',
+                            'restaurants.address',
+                            'restaurants.phone',
+                            'foods.price'
+                        )
                         ->distinct()->get();
         // TODO: make 404 if null
         return view('foods/foodDetail', ['food' => $results, 'restaurants' => $restaurants]);
-     }
+    }
 
     /**
      * Show the form for editing the specified resource.

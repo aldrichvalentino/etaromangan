@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $userId = Auth::id();
-        if(is_null($userId)){
+        if (is_null($userId)) {
             return redirect('login');
         } else {
             return view('orders/orders', ['orders' => Order::where('user_id', $userId)->get()]);
@@ -35,7 +35,7 @@ class OrderController extends Controller
     {
         $food_id = $request->query('food_id');
         $restaurant_id = $request->query('restaurant_id');
-        if($food_id == null || $restaurant_id == null){
+        if ($food_id == null || $restaurant_id == null) {
             return redirect('menu');
         }
         $price = DB::table('foods')
@@ -65,11 +65,11 @@ class OrderController extends Controller
                     ->select('price')
                     ->get();
 
-        if($price->isEmpty()){
+        if ($price->isEmpty()) {
             return back()->withInput()->withErrors(['food_id' => 'Food and restaurant does not match']);
         } else {
             $userId = Auth::id();
-            if(is_null($userId)){
+            if (is_null($userId)) {
                 return redirect('login');
             }
             
