@@ -12,4 +12,6 @@
     <h1>Not found</h1>
 @endforelse
 
+{{ $foods->links() }}
+
 @endsection

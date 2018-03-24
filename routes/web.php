@@ -24,6 +24,8 @@ Route::get('/menu', function () {
     return view('menu');
 });
 
+Route::get('/menu/{type}', 'FoodController@getFoodsByType');
+
 /* Resource routes */
 Route::resource('foods', 'FoodController');
 Route::resource('orders', 'OrderController');
