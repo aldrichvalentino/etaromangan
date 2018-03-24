@@ -11,10 +11,19 @@
 |
 */
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+/* Static routes */
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/menu', function () {
+    return view('menu');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+/* Resource routes */
+Route::resource('foods', 'FoodController');
+Route::resource('orders', 'OrderController');
