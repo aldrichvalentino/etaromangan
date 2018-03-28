@@ -1,4 +1,4 @@
-FROM node:boron-alpine
+FROM node:alpine
 
 # Add essential build tools
 RUN apk add --no-cache bash build-base automake autoconf libtool libpng-dev nasm

@@ -15,11 +15,11 @@ class CreateRestaurantsTable extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username', 15)->unique();
+            $table->string('username')->unique();
             $table->string('password');
-            $table->string('name', 15);
-            $table->string('phone', 12);
-            $table->string('address', 30);
+            $table->string('name');
+            $table->string('phone');
+            $table->string('address');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateRestaurantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurants');
+
     }
 }

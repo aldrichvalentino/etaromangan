@@ -46,9 +46,13 @@ class OrderController extends Controller
                     ->select('price')
                     ->get();
 
-        return view('orders.createOrder', ['food_id' => $food_id,
-                                        'restaurant_id' => $restaurant_id,
-                                        'price' => $price]);
+        return view('orders.createOrder', [
+            'food_id' => $food_id,
+            'restaurant_id' => $restaurant_id,
+            'price' => $price,
+            'show_navbar' => true,
+            'show_footer' => true
+        ]);
     }
 
     /**

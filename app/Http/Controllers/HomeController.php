@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home');
+        return view('pages.home', [
+            'show_navbar' => true,
+            'show_footer' => true
+        ]);
     }
 }

@@ -1,5 +1,7 @@
 <div class="container">
-  <a class="navbar-brand" href="{{ url('/') }}">Eta Ro Mangan!</a>
+  <a class="navbar-brand" href="{{ url('/') }}">
+    {{ config('app.name') }}
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false"
     aria-label="Toggle navigation">
       <span class="fa fa-bars"></span> Menu

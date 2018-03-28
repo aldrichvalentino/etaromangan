@@ -55,6 +55,27 @@ h5,
   font-weight: bold;
 }
 
+.page-item {
+  .page-link {
+    z-index: 1;
+    color: $primary;
+    background-color: $white;
+
+    :hover {
+      z-index: inherit;
+      color: $white;
+      background-color: $primary;
+    }
+  }
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: $white;
+  background-color: $primary;
+  border-color: $primary;
+}
+
 .text-primary {
   color: $primary !important;
 }
@@ -465,6 +486,7 @@ textarea.form-control {
     margin-bottom: 30px;
   }
 }
+
 #section-about {
   padding: 8em 0;
   .img {
@@ -473,6 +495,22 @@ textarea.form-control {
     @media screen and (max-width: $md) {
       position: relative;
       right: inherit;
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}
+#section-about-left {
+  padding: 5em 0;
+  margin: 5em 0 15em;
+
+  .img {
+    position: absolute;
+    right: 60%;
+    @media screen and (max-width: $md) {
+      position: relative;
+      left: inherit;
       img {
         max-width: 100%;
       }

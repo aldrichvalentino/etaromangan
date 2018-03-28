@@ -65,7 +65,13 @@ class FoodController extends Controller
                         )
                         ->distinct()->get();
         // TODO: make 404 if null
-        return view('foods.foodDetail', ['food' => $results, 'restaurants' => $restaurants]);
+        return view('foods.foodDetail', [
+            'food' => $results,
+            'restaurants' => $restaurants,
+            'show_navbar' => true,
+            'trans_navbar' => false,
+            'show_footer' => true
+        ]);
     }
 
     /**
@@ -115,11 +121,18 @@ class FoodController extends Controller
         }
 
         $results = DB::table('foods')
-                ->select('name', 'type', 'id')
+                ->select('name', 'price', 'type', 'id')
                 ->where('type', $type)
                 ->orderBy('name')
                 ->distinct()
                 ->paginate(10);
-        return view('foods/foods', ['foods' => $results]);
+
+        return view('foods.foods', [
+            'foods' => $results,
+            'type' => $type,
+            'show_navbar' => true,
+            'trans_navbar' => false,
+            'show_footer' => true
+        ]);
     }
 }

@@ -11,20 +11,8 @@ class RestaurantSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('restaurants')->insert([
-            'name' => 'Resto X',
-            'username' => 'restox',
-            'address' => 'Jalan Sudirman',
-            'phone' => '081513031489',
-            'password' => bcrypt('hello'),
-        ]);
-
-        DB::table('restaurants')->insert([
-            'name' => 'Resto Y',
-            'username' => 'restoy',
-            'address' => 'Jalan Ganesha',
-            'phone' => '081513031489',
-            'password' => bcrypt('hello'),
-        ]);
+        factory(App\Restaurant::class, 40)->create()->each(function ($restaurant) {
+            factory(App\Food::class)->create(['id' => $restaurant->id, 'restaurant_id' => $restaurant->id]);
+        });
     }
 }

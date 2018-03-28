@@ -5,8 +5,11 @@
 @endsection
 
 @section('content')
-<section class="ftco-section bg-dark" id="section-login">
+<section class="ftco-section" id="section-login">
     <div class="container">
+        <h1 class="row mb-4 justify-content-center">
+            {{ config('app.name') }}
+        </h1>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card text-center">

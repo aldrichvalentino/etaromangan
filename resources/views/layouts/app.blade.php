@@ -26,19 +26,36 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target="#ftco-navbar" data-offset="200">
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        @include('includes.app.navbar')
-    </nav>
+    @if (isset($show_navbar))
+        @if ($show_navbar)
+            @if (isset($trans_navbar))
+                @if ($trans_navbar)
+                    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+                        @include('includes.app.navbar')
+                    </nav>
+                @else
+                    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake" id="ftco-navbar">
+                        @include('includes.app.navbar')
+                    </nav>
+                @endif
+            @else
+                <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+                    @include('includes.app.navbar')
+                </nav>
+            @endif
+        @endif
+    @endif
 
     @yield('content')
 
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
-        @include('includes.app.footer')
-    </footer>
+    @if (isset($show_footer))
+        @if ($show_footer)
+            <footer class="ftco-footer ftco-bg-dark ftco-section">
+                @include('includes.app.footer')
+            </footer>
+        @endif
+    @endif
 
-    <div id="ftco-loader" class="show fullscreen">
-        @include('includes.app.loader')
-    </div>
     <!-- Scripts -->
     <script src="{{ mix('/js/bootstrap.js') }}"></script>
     <script type="text/javascript" src="{!! asset('js/jquery.easing.min.js') !!}"></script>

@@ -16,9 +16,9 @@ class CreateFoodsTable extends Migration
         Schema::create('foods', function (Blueprint $table) {
             $table->integer('id')->unsigned();
             $table->integer('restaurant_id')->unsigned();
-            $table->string('name', 15);
+            $table->string('name');
             $table->string('price', 8);
-            $table->string('type', 8);
+            $table->enum('type', ['halal', 'nonhalal']);
             $table->timestamps();
 
             $table->foreign('restaurant_id')
@@ -36,5 +36,6 @@ class CreateFoodsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('foods');
+        Schema::dropIfExists('restaurants');
     }
 }
