@@ -22,7 +22,7 @@ class OrderController extends Controller
         if (is_null($userId)) {
             return redirect('login');
         } else {
-            return view('orders/orders', ['orders' => Order::where('user_id', $userId)->paginate(10)]);
+            return view('orders.orders', ['orders' => Order::where('user_id', $userId)->paginate(10)]);
         }
     }
 
@@ -45,8 +45,8 @@ class OrderController extends Controller
                     ])
                     ->select('price')
                     ->get();
-        
-        return view('orders/createOrder', ['food_id' => $food_id,
+
+        return view('orders.createOrder', ['food_id' => $food_id,
                                         'restaurant_id' => $restaurant_id,
                                         'price' => $price]);
     }
@@ -74,7 +74,7 @@ class OrderController extends Controller
             if (is_null($userId)) {
                 return redirect('login');
             }
-            
+
             $validator = Validator::make($request->all(), [
                 'quantity' => 'required|numeric|min:1',
                 'address' => 'required'

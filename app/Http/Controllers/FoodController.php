@@ -50,7 +50,7 @@ class FoodController extends Controller
     public function show($id)
     {
         $results = Food::find($id);
-        if(is_null($results)){
+        if (is_null($results)) {
             return response('Not Found', 404);
         }
         $restaurants = DB::table('restaurants')
@@ -64,7 +64,8 @@ class FoodController extends Controller
                             'foods.price'
                         )
                         ->distinct()->get();
-        return view('foods/foodDetail', ['food' => $results, 'restaurants' => $restaurants]);
+        // TODO: make 404 if null
+        return view('foods.foodDetail', ['food' => $results, 'restaurants' => $restaurants]);
     }
 
     /**
@@ -109,7 +110,7 @@ class FoodController extends Controller
      */
     public function getFoodsByType($type)
     {
-        if($type != 'halal' && $type != 'nonhalal'){
+        if ($type != 'halal' && $type != 'nonhalal') {
             return redirect('/menu');
         }
 

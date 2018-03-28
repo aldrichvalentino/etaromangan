@@ -5,10 +5,10 @@
         Users
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('dashboard') }}"><i class="icon-login"></i> Login</span></a>
+        <a class="nav-link" href="{{ route('login') }}"><i class="icon-login"></i> Login</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('dashboard') }}"><i class="icon-user"></i> Register <span class="badge badge-primary">NEW</span></a>
+        <a class="nav-link" href="{{ route('register') }}"><i class="icon-user"></i> Register <span class="badge badge-primary">NEW</span></a>
       </li>
     @else
       <li class="nav-item">

@@ -1,7 +1,11 @@
-@extends('layouts.app-admin')
+@extends('layouts.app')
+
+@section('title')
+    Login
+@endsection
 
 @section('content')
-<div class="container">
+<section class="ftco-section bg-dark" id="section-login">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -65,5 +69,5 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 @endsection
