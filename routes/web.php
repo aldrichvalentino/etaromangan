@@ -24,6 +24,8 @@ Route::get('/menu', function () {
     return view('menu');
 });
 
+Route::get('/menu/{type}', 'FoodController@getFoodsByType');
+
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 })->name('dashboard');

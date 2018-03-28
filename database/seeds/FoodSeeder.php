@@ -42,5 +42,21 @@ class FoodSeeder extends Seeder
             'id' => 3,
             'restaurant_id' => 2,
         ]);
+
+        DB::table('foods')->insert([
+            'name' => 'Steak',
+            'price' => '45000',
+            'type' => 'halal',
+            'id' => 4,
+            'restaurant_id' => 2,
+        ]);
+
+        DB::table('foods')->insert([
+            'name' => 'Sayur',
+            'price' => '20000',
+            'type' => 'halal',
+            'id' => 5,
+            'restaurant_id' => 2,
+        ]);
     }
 }

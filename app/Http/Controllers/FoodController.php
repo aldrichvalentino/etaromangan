@@ -16,24 +16,8 @@ class FoodController extends Controller
      */
     public function index(Request $request)
     {
-        $halal = $request->query('type');
-
-        if ($halal == null) {
-            $results = DB::table('foods')
-                    ->select('name', 'type', 'id')
-                    ->orderBy('name')
-                    ->distinct()
-                    ->get();
-            return view('foods.foods', ['foods' => $results]);
-        } else {
-            $results = DB::table('foods')
-                    ->select('name', 'type', 'id')
-                    ->where('type', $halal)
-                    ->orderBy('name')
-                    ->distinct()
-                    ->get();
-            return view('foods.foods', ['foods' => $results]);
-        }
+        // route is disabled, find all foods from menu
+        return redirect('/menu');
     }
 
     /**
@@ -66,6 +50,9 @@ class FoodController extends Controller
     public function show($id)
     {
         $results = Food::find($id);
+        if(is_null($results)){
+            return response('Not Found', 404);
+        }
         $restaurants = DB::table('restaurants')
                         ->join('foods', 'foods.restaurant_id', '=', 'restaurants.id')
                         ->where('foods.name', $results->name)
@@ -113,5 +100,26 @@ class FoodController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Find foods by it's type, can be halal or nonhalal
+     *
+     * @param  string type
+     * @return \Illuminate\Http\Response
+     */
+    public function getFoodsByType($type)
+    {
+        if ($type != 'halal' && $type != 'nonhalal') {
+            return redirect('/menu');
+        }
+
+        $results = DB::table('foods')
+                ->select('name', 'type', 'id')
+                ->where('type', $type)
+                ->orderBy('name')
+                ->distinct()
+                ->paginate(10);
+        return view('foods/foods', ['foods' => $results]);
     }
 }
