@@ -1,4 +1,4 @@
-@extends('layouts/app')
+@extends('layouts.app')
 
 @section('content')
 
@@ -10,12 +10,12 @@
     @endif
 
     <input type="hidden" value="{{ $restaurant_id }}" name="restaurant_id" />
-    
+
     <label>Quantity : <input type="number" value="0" id="quantity" name="quantity" /></label><br/>
     @if($errors->has('quantity'))
         <div>{{ $errors->first('quantity') }}</div>
     @endif
-    
+
     <div>Total harga = <span id="total">0</span></div>
     @if($errors->has('total'))
         <div>{{ $errors->first('total') }}</div>
@@ -25,7 +25,7 @@
     @if($errors->has('address'))
         <div>{{ $errors->first('address') }}</div>
     @endif
-    
+
     <input type="submit" value="Pesan" />
     <br/>
 

@@ -30,9 +30,7 @@
         @include('includes.app.navbar')
     </nav>
 
-    <div id="content">
-        @yield('content')
-    </div>
+    @yield('content')
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
         @include('includes.app.footer')

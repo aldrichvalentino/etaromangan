@@ -17,14 +17,14 @@ class FoodController extends Controller
     public function index(Request $request)
     {
         $halal = $request->query('type');
-        
+
         if ($halal == null) {
             $results = DB::table('foods')
                     ->select('name', 'type', 'id')
                     ->orderBy('name')
                     ->distinct()
                     ->get();
-            return view('foods/foods', ['foods' => $results]);
+            return view('foods.foods', ['foods' => $results]);
         } else {
             $results = DB::table('foods')
                     ->select('name', 'type', 'id')
@@ -32,7 +32,7 @@ class FoodController extends Controller
                     ->orderBy('name')
                     ->distinct()
                     ->get();
-            return view('foods/foods', ['foods' => $results]);
+            return view('foods.foods', ['foods' => $results]);
         }
     }
 
@@ -78,7 +78,7 @@ class FoodController extends Controller
                         )
                         ->distinct()->get();
         // TODO: make 404 if null
-        return view('foods/foodDetail', ['food' => $results, 'restaurants' => $restaurants]);
+        return view('foods.foodDetail', ['food' => $results, 'restaurants' => $restaurants]);
     }
 
     /**

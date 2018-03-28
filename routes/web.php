@@ -17,7 +17,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /* Static routes */
 Route::get('/', function () {
-    return view('pages.welcome');
+    return view('pages.index');
 });
 
 Route::get('/menu', function () {

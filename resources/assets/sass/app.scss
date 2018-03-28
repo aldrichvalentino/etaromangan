@@ -189,6 +189,7 @@ h5,
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 .ftco-cover {
   // background: lighten( $black, 10%);
   @extend .bg-image;
@@ -245,6 +246,7 @@ h5,
     min-height: 700px !important;
   }
 }
+
 .ftco-slant {
   position: relative;
   overflow: hidden;
