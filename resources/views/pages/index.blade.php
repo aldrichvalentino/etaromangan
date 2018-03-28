@@ -591,7 +591,6 @@
     </div>
 </div>
 <!-- END Modal -->
-<<<<<<< HEAD
 @endsection
 
 @section('script')
@@ -636,6 +635,4 @@
     };
 scrollWindow();
 </script>
-=======
->>>>>>> 4b1d050aee84c1eff075267634571f1ce8c7a770
 @endsection
