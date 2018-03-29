@@ -51,6 +51,7 @@ class OrderController extends Controller
             'restaurant_id' => $restaurant_id,
             'price' => $price,
             'show_navbar' => true,
+            'trans_navbar' => false,
             'show_footer' => true
         ]);
     }
