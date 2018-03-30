@@ -22,7 +22,12 @@ class OrderController extends Controller
         if (is_null($userId)) {
             return redirect('login');
         } else {
-            return view('orders.orders', ['orders' => Order::where('user_id', $userId)->paginate(10)]);
+            return view('orders.orders', [
+                'orders' => Order::where('user_id', $userId)->paginate(10),
+                'show_navbar' => true,
+                'trans_navbar' => false,
+                'show_footer' => true
+            ]);
         }
     }
 
