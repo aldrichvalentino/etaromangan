@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Order;
+use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -57,18 +58,22 @@ class OrderController extends Controller
         if ($food_id == null || $restaurant_id == null) {
             return redirect('menu');
         }
-        $price = DB::table('foods')
+        $restaurant = DB::table('restaurants')
+                    ->where('id', '=', $restaurant_id)
+                    ->select('id', 'name')
+                    ->get();
+        $food_info = DB::table('foods')
                     ->where([
                         ['id', '=', $request->food_id],
                         ['restaurant_id', '=', $request->restaurant_id]
                     ])
-                    ->select('price')
+                    ->select('price', 'name', 'description')
                     ->get();
 
         return view('orders.createOrder', [
             'food_id' => $food_id,
-            'restaurant_id' => $restaurant_id,
-            'price' => $price,
+            'restaurant_info' => $restaurant,
+            'food_info' => $food_info,
             'show_navbar' => true,
             'trans_navbar' => false,
             'show_footer' => true
@@ -90,7 +95,7 @@ class OrderController extends Controller
                     ])
                     ->select('price')
                     ->get();
-
+        
         if ($price->isEmpty()) {
             return back()->withInput()->withErrors(['food_id' => 'Food and restaurant does not match']);
         } else {

@@ -49,7 +49,7 @@ Orders
                                 @endif
                                 @empty
                                     <div class="text-center">
-                                        <p class="lead">Not found.</p>
+                                        <p class="lead">Tidak ada pesanan.</p>
                                     </div>
                                 @endforelse
                             </div>
@@ -75,7 +75,7 @@ Orders
                                 @endif
                                 @empty
                                     <div class="text-center">
-                                        <p class="lead">Not found.</p>
+                                        <p class="lead">Tidak ada pesanan.</p>
                                     </div>
                                 @endforelse
                             </div>

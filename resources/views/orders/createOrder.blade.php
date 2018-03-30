@@ -12,7 +12,7 @@ Order
                 <h2 class="display-4">Pesan</h2>
                 <div class="row justify-content-center">
                     <div class="col-md-7">
-                        <p class="lead">{{ $food_id }}</p>
+                        <p class="lead">{{ $food_info[0]->name }}</p>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@ Order
                     @if($errors->has('food_id'))
                         <div>{{ $errors->first('food_id') }}</div>
                     @endif
-                    <input type="hidden" value="{{ $restaurant_id }}" name="restaurant_id" />
+                    <input type="hidden" value="{{ $restaurant_info[0]->id }}" name="restaurant_id" />
 
                     <div class="form-group">
                         <label for="quantity">Jumlah:</label>
@@ -56,10 +56,10 @@ Order
                 <div class="media d-block mb-4 text-center ftco-media ftco-animate">
                     <img src="{{ url('images/offer_1.jpg') }}" alt="Free Template by Free-Template.co" class="img-fluid">
                     <div class="media-body p-md-5 p-4">
-                        <h5 class="mt-0 h4">In Taste Restaurant</h5>
-                        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                            the blind texts.</p>
-                        <p class="mb-0"><a href="{{ url('foods') }}/{{ $food_id }}" class="btn btn-primary btn-sm">Read More</a></p>
+                        <h5 class="mt-0 h4">{{ $restaurant_info[0]->name }}</h5>
+                        <h5 class="mt-0 h4">{{ $food_info[0]->name }}</h5>
+                        <p class="mb-4">{{ $food_info[0]->description }}</p>
+                        <p class="mb-0"><a href="{{ url('foods') }}/{{ $food_id }}" class="btn btn-primary btn-sm">Baca lebih lanjut</a></p>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@ Order
     var totalPrice = document.getElementById('total');
     var quantityInput = document.getElementById('quantity');
     quantityInput.onchange = function(){
-        totalPrice.innerText = quantityInput.value * {{ $price[0]->price }};
+        totalPrice.innerText = quantityInput.value * {{ $food_info[0]->price }};
     }
 </script>
 

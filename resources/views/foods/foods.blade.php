@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+@if($type === 'halal')
+Menu Halal
+@elseif($type === 'nonhalal')
+Menu Non-Halal
+@endif
+@endsection
+
 @section('navbar-additional-class')
 scrolled awake
 @endsection

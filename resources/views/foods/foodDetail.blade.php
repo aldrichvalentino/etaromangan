@@ -13,7 +13,7 @@
                 <h2 class="display-4">{{ $food->name }}</h2>
                 <div class="row justify-content-center">
                     <div class="col-md-7">
-                        <p class="lead">{{ $food->type }}</p>
+                        <p class="lead">{{ $food->description }}</p>
                     </div>
                 </div>
             </div>
