@@ -49,7 +49,7 @@ Orders
                                 @endif
                                 @empty
                                     <div class="text-center">
-                                        <p class="lead">Tidak ada pesanan.</p>
+                                    <p class="lead">Tidak ada pesanan. Kembali lihat <a href="{{ url('menu') }}">menu</a>.</p>
                                     </div>
                                 @endforelse
                             </div>
@@ -75,7 +75,7 @@ Orders
                                 @endif
                                 @empty
                                     <div class="text-center">
-                                        <p class="lead">Tidak ada pesanan.</p>
+                                    <p class="lead">Tidak ada pesanan. Kembali lihat <a href="{{ url('menu') }}">menu</a>.</p>
                                     </div>
                                 @endforelse
                             </div>
