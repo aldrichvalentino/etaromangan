@@ -40,3 +40,4 @@ Route::get('/dashboard', function () {
 /* Resource routes */
 Route::resource('foods', 'FoodController');
 Route::resource('orders', 'OrderController');
+Route::resource('users', 'UserController');
