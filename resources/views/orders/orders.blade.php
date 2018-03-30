@@ -12,8 +12,7 @@ Orders
                 <h2 class="display-4">Pesanan</h2>
                 <div class="row justify-content-center">
                     <div class="col-md-7">
-                        <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                            the blind texts.</p>
+                        <p class="lead">Silahkan menunggu pesanan yang sedang diproses.</p>
                     </div>
                 </div>
             </div>
@@ -32,40 +31,52 @@ Orders
                 <div class="tab-content text-left">
                     <div class="tab-pane fade show active" id="orders-progress" role="tabpanel" aria-labelledby="orders-progress">
                         <div class="row">
-                            <div class="col-md-6 ftco-animate">
+                            <div class="col-md-12 ftco-animate">
                                 @forelse($orders as $order)
                                 @if($order->status == "processed")
                                     <div class="media menu-item">
                                         <img class="mr-3" src="images/menu_1.jpg" class="img-fluid" alt="Free Template by Free-Template.co">
                                         <div class="media-body">
-                                            <h5 class="mt-0">Salted Fried Chicken</h5>
-                                            <p>{{ $order }}</p>
+                                            <h5 class="mt-0">{{ $order->restaurant_name }}: {{ $order->food_name }}</h5>
+                                            <p>
+                                                Alamat Pengiriman: {{ $order->address }} <br/>
+                                                Telepon Restoran: {{ $order->restaurant_phone }} <br/>
+                                                Jumlah Pesanan: {{ $order->quantity }} 
+                                            </p>
                                             <h6 class="text-primary menu-price">Rp{{ $order->total }}</h6>
                                         </div>
                                     </div>
                                 @endif
                                 @empty
-                                    <h5 class="mt-0">Not found</h5>
+                                    <div class="text-center">
+                                        <p class="lead">Not found.</p>
+                                    </div>
                                 @endforelse
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="orders-done" role="tabpanel" aria-labelledby="orders-done">
                         <div class="row">
-                            <div class="col-md-6 ftco-animate">
+                            <div class="col-md-12 ftco-animate">
                                 @forelse($orders as $order)
                                 @if($order->status == "done")
                                     <div class="media menu-item">
                                         <img class="mr-3" src="images/menu_1.jpg" class="img-fluid" alt="Free Template by Free-Template.co">
                                         <div class="media-body">
-                                            <h5 class="mt-0">Salted Fried Chicken</h5>
-                                            <p>{{ $order }}</p>
+                                            <h5 class="mt-0">{{ $order->restaurant_name }}: {{ $order->food_name }}</h5>
+                                            <p>
+                                                Alamat Pengiriman: {{ $order->address }} <br/>
+                                                Telepon Restoran: {{ $order->restaurant_phone }} <br/>
+                                                Jumlah Pesanan: {{ $order->quantity }} 
+                                            </p>
                                             <h6 class="text-primary menu-price">Rp{{ $order->total }}</h6>
                                         </div>
                                     </div>
                                 @endif
                                 @empty
-                                    <h5 class="mt-0">Not found</h5>
+                                    <div class="text-center">
+                                        <p class="lead">Not found.</p>
+                                    </div>
                                 @endforelse
                             </div>
                         </div>

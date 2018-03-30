@@ -22,8 +22,22 @@ class OrderController extends Controller
         if (is_null($userId)) {
             return redirect('login');
         } else {
+            $orders = DB::table('orders')
+                ->join('foods', 'foods.id', '=', 'orders.food_id')
+                ->join('restaurants', 'restaurants.id', '=', 'orders.restaurant_id')
+                ->select(
+                    'foods.name AS food_name', 
+                    'restaurants.name AS restaurant_name', 
+                    'orders.total', 
+                    'orders.address', 
+                    'orders.status', 
+                    'orders.quantity',
+                    'restaurants.phone AS restaurant_phone'
+                )
+                ->where('orders.user_id', '=', $userId)
+                ->paginate(10);
             return view('orders.orders', [
-                'orders' => Order::where('user_id', $userId)->paginate(10),
+                'orders' => $orders,
                 'show_navbar' => true,
                 'trans_navbar' => false,
                 'show_footer' => true
