@@ -30,12 +30,34 @@ class RestaurantController extends Controller
      */
     public function getFoods($id) 
     {
-        $foods = DB::table('foods')
-            ->join('restaurants', 'restaurants.id', '=', 'foods.restaurant_id')
-            ->where('restaurants.id', $id)
-            ->get();
-        //return $foods;
-        return view('pages.dashboard');
+        if(Auth::id() == $id){
+            $foods = DB::table('foods')
+                ->join('restaurants', 'restaurants.id', '=', 'foods.restaurant_id')
+                ->where('restaurants.id', $id)
+                ->get();
+            return view('pages.foodDashboard', ['foods' => $foods]);
+        } else {
+            return response('Forbidden', 403);
+        }
+    }
+
+    /**
+     * Display the order of a restaurant
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getOrders($id) 
+    {
+        if(Auth::id() == $id){
+            $orders = DB::table('orders')
+                ->join('restaurants', 'restaurants.id', '=', 'orders.restaurant_id')
+                ->where('restaurants.id', $id)
+                ->get();
+            return view('pages.orderDashboard', ['orders' => $orders]);
+        } else {
+            return response('Forbidden', 403);
+        }
     }
 
     /**
