@@ -51,8 +51,19 @@ class RestaurantController extends Controller
     {
         if(Auth::id() == $id){
             $orders = DB::table('orders')
-                ->join('restaurants', 'restaurants.id', '=', 'orders.restaurant_id')
-                ->where('restaurants.id', $id)
+                ->join('users', 'users.id', '=', 'orders.user_id')
+                ->join('foods', 'foods.id', '=', 'orders.food_id')
+                ->where('orders.restaurant_id', $id)
+                ->select([
+                    'orders.id',
+                    'users.name AS user_name',
+                    'foods.name AS food_name',
+                    'orders.quantity',
+                    'orders.total',
+                    'orders.status',
+                    'orders.address',
+                ])
+                ->orderBy('orders.created_at', 'desc')
                 ->get();
             return view('pages.orderDashboard', ['orders' => $orders]);
         } else {

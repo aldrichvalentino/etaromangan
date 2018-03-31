@@ -36,6 +36,7 @@ class OrderController extends Controller
                     'orders.quantity',
                     'restaurants.phone AS restaurant_phone'
                 )
+                ->orderBy('orders.created_at', 'desc')
                 ->where('orders.user_id', '=', $userId)
                 ->paginate(10);
             return view('orders.orders', [
@@ -159,7 +160,10 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        DB::table('orders')
+            ->where('id', $request->orderID)
+            ->update(['status' => 'done']);
+        return back();
     }
 
     /**
