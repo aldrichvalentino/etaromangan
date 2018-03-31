@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-<section class="ftco-section" id="section-login">
+<section class="mt-5" id="section-register">
     <div class="container">
         <h1 class="row mb-4 justify-content-center">
             {{ config('app.name') }}
         </h1>
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-8 mb-4">
                 <div class="card text-center">
                     <div class="card-header">Pendaftaran</div>
                     <div class="card-body">
@@ -54,13 +54,17 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-md-12">    
-                                    <input type="checkbox" class="form-check-input" id="isRestaurant" name="isRestaurant" />
-                                    <label for="isRestaurant" class="form-check-label">Daftar Sebagai Restoran</label>
+                                <div class="col-md-6 offset-md-4 text-left">
+                                    <div class="checkbox">
+                                        <label for="isRestaurant">
+                                        <input type="checkbox" id="isRestaurant" name="isRestaurant" />
+                                            Daftar Sebagai Restoran
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">    
+                                <div class="col-md-6 offset-md-4 text-left">    
                                     <button type="submit" class="btn btn-primary">
                                     Daftar
                                 </button>

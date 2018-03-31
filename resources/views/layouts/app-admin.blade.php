@@ -29,9 +29,9 @@
 
         <!-- Main content -->
         <main class="main">
-            @include("includes.breadcrumb")
+            {{-- @include("includes.breadcrumb") --}}
 
-            <div class="container-fluid">
+            <div class="container-fluid mt-5">
                 <div class="animated fadeIn">
                     @yield('content')
                 </div>

@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="col-md-1"></div>
-        <div class="col-md-6 order-md-first">
+        <div class="col-md-6 order-md-first mb-4">
             <div class="form-group">
                 <label for="name">Nama</label>
                 <input type="text" name="name" value="" class="form-control mb-4">

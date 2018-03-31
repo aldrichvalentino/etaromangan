@@ -34,9 +34,7 @@ scrolled awake
                 </h2>
                 <div class="row justify-content-center">
                     <div class="col-md-7">
-                        <p class="lead">
-                            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                            the blind texts.
+                        <p class="lead">Kau bebas wak mau pilih menu halal dan non halal. Pilih yang kau suka aja la.
                         </p>
                     </div>
                 </div>
