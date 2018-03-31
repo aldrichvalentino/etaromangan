@@ -26,9 +26,10 @@ class OrderController extends Controller
             $orders = DB::table('orders')
                 ->join('foods', 'foods.id', '=', 'orders.food_id')
                 ->join('restaurants', 'restaurants.id', '=', 'orders.restaurant_id')
+                ->join('users', 'users.id', '=', 'orders.restaurant_id')
                 ->select(
                     'foods.name AS food_name', 
-                    'restaurants.name AS restaurant_name', 
+                    'users.name AS restaurant_name', 
                     'orders.total', 
                     'orders.address', 
                     'orders.status', 
@@ -58,7 +59,7 @@ class OrderController extends Controller
         if ($food_id == null || $restaurant_id == null) {
             return redirect('menu');
         }
-        $restaurant = DB::table('restaurants')
+        $restaurant = DB::table('users')
                     ->where('id', '=', $restaurant_id)
                     ->select('id', 'name')
                     ->get();

@@ -54,11 +54,12 @@ class FoodController extends Controller
             return response('Not Found', 404);
         }
         $restaurants = DB::table('restaurants')
+                        ->join('users', 'users.id', '=', 'restaurants.id')
                         ->join('foods', 'foods.restaurant_id', '=', 'restaurants.id')
                         ->where('foods.name', $results->name)
                         ->select(
                             'restaurants.id',
-                            'restaurants.name',
+                            'users.name',
                             'restaurants.address',
                             'restaurants.phone',
                             'foods.price'
