@@ -23,6 +23,9 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('dashboard') }}/{{ Auth::id() }}/foods"><i class="fa fa-star-o"></i>Makanan</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('dashboard') }}/{{ Auth::id() }}/edit"><i class="fa fa-cog"></i>Pengaturan</a>
+      </li>
       <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Base</a>
           <ul class="nav-dropdown-items">

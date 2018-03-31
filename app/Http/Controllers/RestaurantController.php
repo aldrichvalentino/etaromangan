@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -94,7 +96,9 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        //
+        $userData = User::find($id);
+        $restaurantData = Restaurant::find($id);
+        return view('pages.editRestaurant', ['userData' => $userData, 'restaurantData' => $restaurantData]);
     }
 
     /**

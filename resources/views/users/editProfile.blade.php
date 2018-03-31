@@ -12,17 +12,11 @@
         <div class="row">
             <div class="col-md-5 ftco-animate mb-5">
                 <h2 class="ftco-primary-title display-4">Edit Profile</h2>
-                <div class="form-group">
+                <div class="form-group mb-5">
                     <label for="name">Name:</label>
                     <input type="text" name="name" id="name" class="form-control mb-4" value="{{ $user->name }}" />
                     @if($errors->has('name'))
                         <div class="alert alert-danger">{{ $errors->first('name') }}</div>
-                    @endif
-
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" class="form-control mb-4" value="{{ $user->email }}" />
-                    @if($errors->has('email'))
-                        <div class="alert alert-danger">{{ $errors->first('email') }}</div>
                     @endif
 
                     <label for="password">Password:</label>
@@ -38,8 +32,8 @@
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-6 ftco-animate img order-first mb-5 text-center" data-animate-effect="fadeInRight">
-                <img src="{{ url('images/menu_1.jpg') }}" alt="Free Template by Free-Template.co" class="rounded-circle">
-                <input type="file" class="mt-4" name="image" />
+                <img width="250px" src="{{ url('images/menu_1.jpg') }}" alt="Free Template by Free-Template.co" class="rounded-circle">
+                <br/><input type="file" class="mt-4" name="image" />
             </div>
         </div>
     </form>

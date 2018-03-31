@@ -37,6 +37,7 @@ Route::get('/menu/{type}', 'FoodController@getFoodsByType');
 Route::get('/dashboard/{id}', 'RestaurantController@show')->name('dashboard');
 Route::get('/dashboard/{id}/foods', 'RestaurantController@getFoods')->name('dashboard.foods');
 Route::get('/dashboard/{id}/orders', 'RestaurantController@getOrders')->name('dashboard.orders');
+Route::get('/dashboard/{id}/edit', 'RestaurantController@edit')->name('dashboard.edit');
 
 /* Resource routes */
 Route::resource('foods', 'FoodController');

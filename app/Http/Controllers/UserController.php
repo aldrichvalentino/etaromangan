@@ -95,44 +95,75 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // if($request->password != $request->password_confimation){
-        //     return $request;
-        //     return back()->withInput()->withErrors(['password' => 'Password does not match']);
-        // }
+        $isRestaurant = User::find($id)->isRestaurant;
+        if ($isRestaurant) {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+                'phone' => 'required|numeric|digits_between:8,12',
+                'password' => 'nullable|min:6|confirmed',
+            ]);    
+        } else {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'password' => 'nullable|min:6|confirmed',
+            ]);
+        }
         
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'password' => 'nullable|min:6|confirmed',
-        ]);
-        
-        //return $validator->fails();
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
-        if(!is_null($request->password) && !is_null($request->password_confirmation)){
+        if(!$isRestaurant && !is_null($request->password) && !is_null($request->password_confirmation)){
             DB::table('users')
                 ->where('id', $id)
                 ->update([
                     'name' => $request->name,
-                    'email' => $request->email,
                     'password' => Hash::make($request->password)
                 ]);
-        } else {
+        } else if(!$isRestaurant && is_null($request->password) && is_null($request->password_confirmation)){
             DB::table('users')
                 ->where('id', $id)
                 ->update([
                     'name' => $request->name,
-                    'email' => $request->email
+                ]);
+        } else if($isRestaurant && !is_null($request->password) && !is_null($request->password_confirmation)){
+            DB::table('users')
+                ->where('id', $id)
+                ->update([
+                    'name' => $request->name,
+                    'password' => Hash::make($request->password)
+                ]);
+            DB::table('restaurants')
+                ->where('id', $id)
+                ->update([
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                ]);
+        } else if($isRestaurant && is_null($request->password) && is_null($request->password_confirmation)){
+            DB::table('users')
+                ->where('id', $id)
+                ->update([
+                    'name' => $request->name,
+                ]);
+            DB::table('restaurants')
+                ->where('id', $id)
+                ->update([
+                    'phone' => $request->phone,
+                    'address' => $request->address,
                 ]);
         }
-        return view('users.userProfile', [
-            'user' => User::find($id),
-            'show_navbar' => true,
-            'trans_navbar' => false,
-            'show_footer' => true
-        ]);
+
+        if ($isRestaurant) {
+            return redirect()->route('dashboard.edit', [Auth::id()]);
+        } else {
+            return view('users.userProfile', [
+                'user' => User::find($id),
+                'show_navbar' => true,
+                'trans_navbar' => false,
+                'show_footer' => true
+            ]);
+        }
     }
 
     /**
