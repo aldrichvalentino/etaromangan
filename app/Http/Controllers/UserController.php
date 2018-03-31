@@ -16,7 +16,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::find($id);
+        return view('users.userProfile', [
+            'user' => User::find($id),
+            'show_navbar' => true,
+            'trans_navbar' => false,
+            'show_footer' => true
+        ]);
     }
 
     /**
@@ -62,7 +67,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "edit profile";
     }
 
     /**
