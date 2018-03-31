@@ -33,11 +33,12 @@ Route::get('/menu', function () {
 
 Route::get('/menu/{type}', 'FoodController@getFoodsByType');
 
-Route::get('/dashboard', function () {
-    return view('pages.dashboard');
-})->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('pages.dashboard');
+// })->name('dashboard');
 
 /* Resource routes */
 Route::resource('foods', 'FoodController');
 Route::resource('orders', 'OrderController');
 Route::resource('users', 'UserController');
+Route::resource('dashboard', 'RestaurantController');

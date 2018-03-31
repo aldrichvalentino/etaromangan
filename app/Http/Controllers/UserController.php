@@ -19,12 +19,17 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('users.userProfile', [
-            'user' => User::find($id),
-            'show_navbar' => true,
-            'trans_navbar' => false,
-            'show_footer' => true
-        ]);
+        $user = User::find($id);
+        if($user->isRestaurant){
+            return redirect('dashboard');
+        } else {
+            return view('users.userProfile', [
+                'user' => $user,
+                'show_navbar' => true,
+                'trans_navbar' => false,
+                'show_footer' => true
+            ]);
+        }
     }
 
     /**
