@@ -20,8 +20,11 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        if(Auth::id() != $user->id){
+            return redirect('login');
+        }
         if($user->isRestaurant){
-            return redirect('dashboard');
+            return redirect()->route('dashboard', [Auth::id()]);
         } else {
             return view('users.userProfile', [
                 'user' => $user,
