@@ -9,10 +9,8 @@
     <div class="container">
         <div class="row align-items-center justify-content-center text-center ftco-vh-100">
             <div class="col-md-12">
-                <h1 class="ftco-heading ftco-animate mb-3">Welcome To Taste Restaurant</h1>
-                <h2 class="h5 ftco-subheading mb-5 ftco-animate">A free template for Restaurant Websites Distributed by <a href="https://themewagon.com/" target="_blank">ThemeWagon</a></h2>
-                <p><a href="https://free-template.co/" target="_blank" class="btn btn-outline-white btn-lg ftco-animate" data-toggle="modal"
-                        data-target="#reservationModal">Reservation</a></p>
+                <h1 class="ftco-heading ftco-animate mb-3">ETA RO MANGAN!</h1>
+                <h2 class="h5 ftco-subheading mb-5 ftco-animate">Horas ! Selamat datang di zona makan Medan. Eta Ro Mangan kawan !</h2>
             </div>
         </div>
     </div>
@@ -22,12 +20,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center mb-5 ftco-animate">
-                <h4 class="ftco-sub-title">Our Offers</h4>
-                <h2 class="display-4">Offers &amp; Promos</h2>
+                <h4 class="ftco-sub-title">Tentang Kami</h4>
+                <h2 class="display-4">Horas !</h2>
                 <div class="row justify-content-center">
                     <div class="col-md-7">
-                        <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                            the blind texts.</p>
+                        <p class="lead">Web ini didirikan pada bulan April 2018 kawan. Web ini bertujuan untuk menyediakan makanan khas Medan. Namun, menu yang kita sediakan masih disesuaikan dengan menu yang ada di restoran penjual makanan khas Medan. Tapi, tenang kawan. Kita pasti usahakan untuk bisa menyediakan semua makanan medan yang bisa dipesan.
+                                Yuk. Sekarang pesan dulu aja yang kawan suka di menu yang kita sediakan</p>
                     </div>
                 </div>
             </div>

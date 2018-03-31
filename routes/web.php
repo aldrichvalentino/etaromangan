@@ -17,7 +17,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /* Static routes */
 Route::get('/', function () {
-    return view('pages.index', [
+    return view('pages.home', [
         'show_navbar' => true,
         'show_footer' => true
     ]);

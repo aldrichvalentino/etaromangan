@@ -21,13 +21,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 ftco-animate mb-5">
-                <h4 class="ftco-sub-title">Our Story</h4>
-                <h2 class="ftco-primary-title display-4">Welcome</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
-                    texts.</p>
-                <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic
-                    country, in which roasted parts of sentences fly into your mouth.</p>
-                <p><a href="#" class="btn btn-secondary btn-lg">Our Story</a></p>
+                <h4 class="ftco-sub-title">Tentang Kami</h4>
+                <h2 class="ftco-primary-title display-4">Horas !</h2>
+                <p>Web ini didirikan pada bulan April 2018 kawan. Web ini bertujuan untuk menyediakan makanan khas Medan. Namun, menu yang kita sediakan masih disesuaikan dengan menu yang ada di restoran penjual makanan khas Medan. Tapi, tenang kawan. Kita pasti usahakan untuk bisa menyediakan semua makanan medan yang bisa dipesan.
+                        Yuk. Sekarang pesan dulu aja yang kawan suka di menu yang kita sediakan</p>
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-6 ftco-animate img" data-animate-effect="fadeInRight">
