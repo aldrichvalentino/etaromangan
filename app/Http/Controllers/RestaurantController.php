@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Food;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,13 +34,41 @@ class RestaurantController extends Controller
     public function getFoods($id) 
     {
         if(Auth::id() == $id){
-            $foods = DB::table('foods')
-                ->join('restaurants', 'restaurants.id', '=', 'foods.restaurant_id')
-                ->where('restaurants.id', $id)
-                ->get();
+            $foods = Food::where('restaurant_id', $id)->get();
             return view('pages.foodDashboard', ['foods' => $foods]);
         } else {
             return response('Forbidden', 403);
+        }
+    }
+
+    /**
+     * Display the foods of a restaurant
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editFood($id, $food_id) 
+    {
+        if(Auth::id() == $id){
+            $food = Food::find($food_id);
+            return view('pages.editFoodDashboard', ['food' => $food]);
+        } else {
+            return response('Forbidden', 403);
+        }
+    }
+
+    /**
+     * Show the form for adding new food.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function addFood($id)
+    {
+        if (Auth::id() != $id){
+            return response('Forbidden', 403);
+        } else {
+            return view('pages.createFoodDashboard', ['restaurant_id' => Auth::id()]);
         }
     }
 

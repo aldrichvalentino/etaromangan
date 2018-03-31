@@ -55,14 +55,13 @@ scrolled awake
                                                     {{ $food->name }}
                                                 </a>
                                             </h5>
-                                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                                                there live the blind texts.</p>
+                                            <p>{{ $food->description }}</p>
                                             <h6 class="text-primary menu-price">Rp{{ $food->price }}</h6>
                                         </div>
                                     </div>
                                 @empty
-                                    <div class="media menu-item text-center">
-                                        <h1>Food type's not found :(</h1>
+                                    <div class="text-center">
+                                        <p class="lead">Makanan tidak ditemukan :(</p>
                                     </div>
                                 @endforelse
 

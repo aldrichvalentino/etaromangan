@@ -38,6 +38,8 @@ Route::get('/dashboard/{id}', 'RestaurantController@show')->name('dashboard');
 Route::get('/dashboard/{id}/foods', 'RestaurantController@getFoods')->name('dashboard.foods');
 Route::get('/dashboard/{id}/orders', 'RestaurantController@getOrders')->name('dashboard.orders');
 Route::get('/dashboard/{id}/edit', 'RestaurantController@edit')->name('dashboard.edit');
+Route::get('/dashboard/{id}/foods/{food_id}/edit', 'RestaurantController@editFood');
+Route::get('/dashboard/{id}/foods/create', 'RestaurantController@addFood');
 
 /* Resource routes */
 Route::resource('foods', 'FoodController');
