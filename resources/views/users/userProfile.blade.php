@@ -17,7 +17,7 @@
                 <p><a href="{{ url()->current() }}/edit" class="btn btn-primary btn-md">Edit Profile</a></p>
             </div>
             <div class="col-md-1"></div>
-            <div class="col-md-6 ftco-animate img" data-animate-effect="fadeInRight">
+            <div class="col-md-6 ftco-animate img order-first mb-5" data-animate-effect="fadeInRight">
                 <img src="{{ url('images/menu_1.jpg') }}" alt="Free Template by Free-Template.co" class="rounded-circle">
             </div>
         </div>

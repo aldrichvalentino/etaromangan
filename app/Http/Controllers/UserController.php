@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -67,7 +70,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return "edit profile";
+        return view('users.editProfile', [
+            'user' => User::find($id),
+            'show_navbar' => true,
+            'trans_navbar' => false,
+            'show_footer' => true
+        ]);
     }
 
     /**
@@ -79,7 +87,44 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // if($request->password != $request->password_confimation){
+        //     return $request;
+        //     return back()->withInput()->withErrors(['password' => 'Password does not match']);
+        // }
+        
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'password' => 'nullable|min:6|confirmed',
+        ]);
+        
+        //return $validator->fails();
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        if(!is_null($request->password) && !is_null($request->password_confirmation)){
+            DB::table('users')
+                ->where('id', $id)
+                ->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password)
+                ]);
+        } else {
+            DB::table('users')
+                ->where('id', $id)
+                ->update([
+                    'name' => $request->name,
+                    'email' => $request->email
+                ]);
+        }
+        return view('users.userProfile', [
+            'user' => User::find($id),
+            'show_navbar' => true,
+            'trans_navbar' => false,
+            'show_footer' => true
+        ]);
     }
 
     /**
