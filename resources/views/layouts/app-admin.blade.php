@@ -39,9 +39,9 @@
         </main>
 
         <!-- right sidebar -->
-        <div id="aside-menu">
+        {{-- <div id="aside-menu">
             @include("includes.app-admin.right-sidebar")
-        </div>
+        </div> --}}
     </div>
 
     @include("includes.app-admin.footer")

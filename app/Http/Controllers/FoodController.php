@@ -69,7 +69,7 @@ class FoodController extends Controller
             $file = $request->file('image');
             if(!is_null($file)){
                 $destinationPath = 'images';
-                $fileName = 'food'. ($maxFoodID + 1) . '_pic.' . $file->getClientOriginalExtension();
+                $fileName = md5('food'. ($maxFoodID + 1) . '_pic') . '.' . $file->getClientOriginalExtension();
                 $file->move($destinationPath, $fileName);
                 $food->image = $fileName;
             } 
@@ -152,7 +152,7 @@ class FoodController extends Controller
             $fileName = '';
             if(!is_null($file)){
                 $destinationPath = 'images';
-                $fileName = 'food'. $id . '_pic.' . $file->getClientOriginalExtension();
+                $fileName = md5('food'. $id . '_pic') .'.'. $file->getClientOriginalExtension();
                 $file->move($destinationPath, $fileName);
             } 
 

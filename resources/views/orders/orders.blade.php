@@ -35,7 +35,12 @@ Orders
                                 @forelse($orders as $order)
                                 @if($order->status == "processed")
                                     <div class="media menu-item">
-                                        <img class="mr-3" src="{{ url('images') }}/{{ $order->food_image }}" class="img-fluid" alt="{{ $order->food_name }}">
+                                        <div 
+                                            style="background: url('{{ url('images') }}/{{ $order->food_image }}'); 
+                                            height: 90px; 
+                                            width: 90px; 
+                                            background-position:center" class="rounded-circle mr-3">
+                                        </div>
                                         <div class="media-body">
                                             <h5 class="mt-0">{{ $order->restaurant_name }}: {{ $order->food_name }}</h5>
                                             <p>
@@ -61,7 +66,12 @@ Orders
                                 @forelse($orders as $order)
                                 @if($order->status == "done")
                                     <div class="media menu-item">
-                                        <img class="mr-3" src="{{ url('images') }}/{{ $order->food_image }}" class="img-fluid" alt="{{ $order->food_name }}">
+                                        <div 
+                                            style="background: url('{{ url('images') }}/{{ $order->food_image }}'); 
+                                            height: 90px; 
+                                            width: 90px; 
+                                            background-position:center" class="rounded-circle mr-3">
+                                        </div>
                                         <div class="media-body">
                                             <h5 class="mt-0">{{ $order->restaurant_name }}: {{ $order->food_name }}</h5>
                                             <p>

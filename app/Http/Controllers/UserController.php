@@ -160,7 +160,7 @@ class UserController extends Controller
         $file = $request->file('image');
         if(!is_null($file)){
             $destinationPath = 'images';
-            $fileName = 'user'. $id . '_profpic.' . $file->getClientOriginalExtension();
+            $fileName =  md5('user'. $id . '_profpic') . '.' . $file->getClientOriginalExtension();
             $file->move($destinationPath, $fileName);
             
             DB::table('users')

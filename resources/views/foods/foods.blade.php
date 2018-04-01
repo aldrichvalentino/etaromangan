@@ -46,7 +46,14 @@ scrolled awake
                             <div class="col-md-12 ftco-animate">
                                 @forelse($foods as $food)
                                     <div class="media menu-item">
-                                        <img class="mr-5" src="{{ url('images') }}/{{ $food->image }}" class="img-fluid" alt="Free Template by Free-Template.co">
+                                        {{-- <img class="mr-5" src="{{ url('images') }}/{{ $food->image }}" class="img-fluid" alt="Free Template by Free-Template.co"> --}}
+                                        <div 
+                                            style="background: url('{{ url('images') }}/{{ $food->image }}'); 
+                                            height: 90px; 
+                                            width: 90px; 
+                                            margin: auto; 
+                                            background-position:center" class="rounded-circle mr-4">
+                                        </div>
                                         <div class="media-body">
                                             <h5 class="mt-0">
                                                 <a href="{{ url('foods', ['id' => $food->id]) }}">

@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 ftco-animate">
+            <div class="col-md-12 ftco-animate text-center">
                 <a href="{{ url('images') }}/{{ $food->image }}" class="ftco-thumbnail image-popup">
                 <img src="{{ url('images') }}/{{ $food->image }}" alt="{{ $food->name }}" class="img-fluid">
                 </a>
@@ -53,8 +53,13 @@
                         <div class="row">
                             <div class="col-md-10 ftco-animate">
                                 @foreach ($restaurants as $restaurant)
-                                <div class="media menu-item">
-                                    <img class="mr-3" src="{{ url('images') }}/{{ $restaurant->image }}" class="img-fluid" alt="Free Template by Free-Template.co">
+                                    <div class="media menu-item">
+                                        <div 
+                                        style="background: url('{{ url('images') }}/{{ $restaurant->image }}'); 
+                                        height: 90px; 
+                                        width: 90px;  
+                                        background-position:center" class="rounded-circle mr-4">
+                                    </div>
                                     <div class="media-body">
                                         <a class="mt-0" href="{{ url('orders', ['create']) }}?food_id={{ $food->id }}&restaurant_id={{ $restaurant->id }}">
                                             {{ $restaurant->name }}

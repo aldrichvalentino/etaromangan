@@ -16,8 +16,9 @@
         {{ csrf_field() }}
         <div class="col-md-4 img mb-4 text-center">
             <div class="form-group">
-                <img width="200px" src="{{ url('images') }}/{{ $userData->image }}" alt="Free Template by Free-Template.co" class="rounded-circle">
-                <input type="file" class="mt-4" name="image" />
+                <div
+                style="background: url('{{ url('images') }}/{{ $userData->image }}'); height: 250px; width:250px; margin: auto; background-position:center" class="rounded-circle"></div>
+                <br/><input type="file" class="mt-4" name="image" />
                 @if($errors->has('image'))
                     <div class="alert alert-danger mt-4">{{ $errors->first('image') }}</div>
                 @endif
