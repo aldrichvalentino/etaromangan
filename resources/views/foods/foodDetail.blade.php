@@ -17,12 +17,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 ftco-animate">
-                <a href="{{ url('images/menu_1.jpg') }}" class="ftco-thumbnail image-popup">
-                    <img src="{{ url('images/menu_1.jpg') }}" alt="Free Template by Free-Template.co" class="img-fluid">
+            <div class="col-md-12 ftco-animate">
+                <a href="{{ url('images') }}/{{ $food->image }}" class="ftco-thumbnail image-popup">
+                <img src="{{ url('images') }}/{{ $food->image }}" alt="{{ $food->name }}" class="img-fluid">
                 </a>
             </div>
-            <div class="col-md-4 ftco-animate">
+            {{-- <div class="col-md-4 ftco-animate">
                 <a href="{{ url('images/menu_2.jpg') }}" class="ftco-thumbnail image-popup">
                     <img src="{{ url('images/menu_2.jpg') }}" alt="Free Template by Free-Template.co" class="img-fluid">
                 </a>
@@ -31,7 +31,7 @@
                 <a href="{{ url('images/menu_3.jpg') }}" class="ftco-thumbnail image-popup">
                     <img src="{{ url('images/menu_3.jpg') }}" alt="Free Template by Free-Template.co" class="img-fluid">
                 </a>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
@@ -54,7 +54,7 @@
                             <div class="col-md-10 ftco-animate">
                                 @foreach ($restaurants as $restaurant)
                                 <div class="media menu-item">
-                                    <img class="mr-3" src="{{ url('images/menu_1.jpg') }}" class="img-fluid" alt="Free Template by Free-Template.co">
+                                    <img class="mr-3" src="{{ url('images') }}/{{ $restaurant->image }}" class="img-fluid" alt="Free Template by Free-Template.co">
                                     <div class="media-body">
                                         <a class="mt-0" href="{{ url('orders', ['create']) }}?food_id={{ $food->id }}&restaurant_id={{ $restaurant->id }}">
                                             {{ $restaurant->name }}

@@ -48,6 +48,7 @@ class FoodController extends Controller
                 'price' => 'required|numeric|min:1',
                 'description' => 'required|string|max:255',
                 'type' => 'required|string',
+                'image' => 'required|image',
             ]);  
 
             if ($validator->fails()) {
@@ -64,6 +65,14 @@ class FoodController extends Controller
             $food->description = $request->description;
             $food->restaurant_id = $request->restaurant_id;
             $food->type = $request->type;
+
+            $file = $request->file('image');
+            if(!is_null($file)){
+                $destinationPath = 'images';
+                $fileName = 'food'. ($maxFoodID + 1) . '_pic.' . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+                $food->image = $fileName;
+            } 
             $food->save();
             return back();
         }
@@ -88,6 +97,7 @@ class FoodController extends Controller
                         ->select(
                             'restaurants.id',
                             'users.name',
+                            'users.image',
                             'restaurants.address',
                             'restaurants.phone',
                             'foods.price'
@@ -131,11 +141,20 @@ class FoodController extends Controller
                 'price' => 'required|numeric|min:1',
                 'description' => 'required|string|max:255',
                 'type' => 'required|string',
+                'image' => 'required|image'
             ]);  
 
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();
             }
+
+            $file = $request->file('image');
+            $fileName = '';
+            if(!is_null($file)){
+                $destinationPath = 'images';
+                $fileName = 'food'. $id . '_pic.' . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+            } 
 
             DB::table('foods')
                 ->where([
@@ -147,6 +166,7 @@ class FoodController extends Controller
                     'price' => $request->price,
                     'description' => $request->description,
                     'type' => $request->type,
+                    'image' => $fileName,
                 ]);
             return back();
         }
@@ -176,7 +196,7 @@ class FoodController extends Controller
         }
 
         $results = DB::table('foods')
-                ->select('name', 'price', 'type', 'id', 'description')
+                ->select('name', 'price', 'type', 'id', 'description', 'image')
                 ->where('type', $type)
                 ->orderBy('name')
                 ->distinct()

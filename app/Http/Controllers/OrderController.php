@@ -29,7 +29,8 @@ class OrderController extends Controller
                 ->join('users', 'users.id', '=', 'orders.restaurant_id')
                 ->select(
                     'foods.name AS food_name', 
-                    'users.name AS restaurant_name', 
+                    'foods.image AS food_image',
+                    'users.name AS restaurant_name',
                     'orders.total', 
                     'orders.address', 
                     'orders.status', 
@@ -69,7 +70,7 @@ class OrderController extends Controller
                         ['id', '=', $request->food_id],
                         ['restaurant_id', '=', $request->restaurant_id]
                     ])
-                    ->select('price', 'name', 'description')
+                    ->select('price', 'name', 'description', 'image')
                     ->get();
 
         return view('orders.createOrder', [

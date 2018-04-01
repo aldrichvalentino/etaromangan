@@ -35,7 +35,7 @@ Orders
                                 @forelse($orders as $order)
                                 @if($order->status == "processed")
                                     <div class="media menu-item">
-                                        <img class="mr-3" src="images/menu_1.jpg" class="img-fluid" alt="Free Template by Free-Template.co">
+                                        <img class="mr-3" src="{{ url('images') }}/{{ $order->food_image }}" class="img-fluid" alt="{{ $order->food_name }}">
                                         <div class="media-body">
                                             <h5 class="mt-0">{{ $order->restaurant_name }}: {{ $order->food_name }}</h5>
                                             <p>
@@ -61,7 +61,7 @@ Orders
                                 @forelse($orders as $order)
                                 @if($order->status == "done")
                                     <div class="media menu-item">
-                                        <img class="mr-3" src="images/menu_1.jpg" class="img-fluid" alt="Free Template by Free-Template.co">
+                                        <img class="mr-3" src="{{ url('images') }}/{{ $order->food_image }}" class="img-fluid" alt="{{ $order->food_name }}">
                                         <div class="media-body">
                                             <h5 class="mt-0">{{ $order->restaurant_name }}: {{ $order->food_name }}</h5>
                                             <p>

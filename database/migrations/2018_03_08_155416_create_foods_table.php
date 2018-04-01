@@ -20,6 +20,7 @@ class CreateFoodsTable extends Migration
             $table->string('price', 8);
             $table->string('description');
             $table->enum('type', ['halal', 'nonhalal']);
+            $table->string('image');
             $table->timestamps();
 
             $table->foreign('restaurant_id')

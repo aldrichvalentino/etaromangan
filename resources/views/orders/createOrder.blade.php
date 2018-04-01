@@ -54,7 +54,7 @@ Order
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="media d-block mb-4 text-center ftco-media ftco-animate">
-                    <img src="{{ url('images/offer_1.jpg') }}" alt="Free Template by Free-Template.co" class="img-fluid">
+                    <img src="{{ url('images') }}/{{ $food_info[0]->image }}" alt="Free Template by Free-Template.co" class="img-fluid">
                     <div class="media-body p-md-5 p-4">
                         <h5 class="mt-0 h4">{{ $restaurant_info[0]->name }}</h5>
                         <h5 class="mt-0 h4">{{ $food_info[0]->name }}</h5>
