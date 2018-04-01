@@ -11,13 +11,16 @@
 @section('content')
 
 <div class="container mt-4">
-    <form class="row justify-content-center" action="{{ url('users') }}/{{ Auth::id() }}" method="post">
+    <form class="row justify-content-center" action="{{ url('users') }}/{{ Auth::id() }}" method="post" enctype="multipart/form-data">
         {{ method_field('PATCH') }}
         {{ csrf_field() }}
         <div class="col-md-4 img mb-4 text-center">
             <div class="form-group">
-                <img width="200px" src="{{ url('images/menu_1.jpg') }}" alt="Free Template by Free-Template.co" class="rounded-circle">
+                <img width="200px" src="{{ url('images') }}/{{ $userData->image }}" alt="Free Template by Free-Template.co" class="rounded-circle">
                 <input type="file" class="mt-4" name="image" />
+                @if($errors->has('image'))
+                    <div class="alert alert-danger mt-4">{{ $errors->first('image') }}</div>
+                @endif
             </div>
         </div>
         <div class="col-md-1"></div>

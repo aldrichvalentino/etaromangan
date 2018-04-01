@@ -6,7 +6,7 @@
 
 @section('content')
 <section class="ftco-section" id="section-about">
-    <form action="{{ url('users') }}/{{ Auth::id() }}" method="POST" class="container">
+    <form action="{{ url('users') }}/{{ Auth::id() }}" method="POST" class="container" enctype="multipart/form-data">
         {{ method_field('PATCH') }}
         {{ csrf_field() }}
         <div class="row">
@@ -32,8 +32,11 @@
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-6 ftco-animate img order-first mb-5 text-center" data-animate-effect="fadeInRight">
-                <img width="250px" src="{{ url('images/menu_1.jpg') }}" alt="Free Template by Free-Template.co" class="rounded-circle">
+                <img width="250px" src="{{ url('images') }}/{{ $user->image }}" alt="Free Template by Free-Template.co" class="rounded-circle">
                 <br/><input type="file" class="mt-4" name="image" />
+                @if($errors->has('image'))
+                    <div class="alert alert-danger">{{ $errors->first('image') }}</div>
+                @endif
             </div>
         </div>
     </form>

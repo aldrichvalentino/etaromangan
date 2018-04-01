@@ -68,6 +68,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'image' => 'default.png',
             'isRestaurant' => array_key_exists('isRestaurant', $data) ? true : false,
         ]);
 
