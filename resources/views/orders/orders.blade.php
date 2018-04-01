@@ -12,7 +12,7 @@ Orders
                 <h2 class="display-4">Pesanan</h2>
                 <div class="row justify-content-center">
                     <div class="col-md-7">
-                        <p class="lead">Silahkan menunggu pesanan yang sedang diproses.</p>
+                        <p class="lead">Sabar ya wak, masih dalam proses makanan mu.</p>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,8 @@ Orders
                                             style="background: url('{{ url('images') }}/{{ $order->food_image }}'); 
                                             height: 90px; 
                                             width: 90px; 
-                                            background-position:center" class="rounded-circle mr-3">
+                                            background-position:center;
+                                            background-repeat: no-repeat;" class="rounded-circle mr-3">
                                         </div>
                                         <div class="media-body">
                                             <h5 class="mt-0">{{ $order->restaurant_name }}: {{ $order->food_name }}</h5>
@@ -70,7 +71,8 @@ Orders
                                             style="background: url('{{ url('images') }}/{{ $order->food_image }}'); 
                                             height: 90px; 
                                             width: 90px; 
-                                            background-position:center" class="rounded-circle mr-3">
+                                            background-position:center;
+                                            background-repeat: no-repeat;" class="rounded-circle mr-3">
                                         </div>
                                         <div class="media-body">
                                             <h5 class="mt-0">{{ $order->restaurant_name }}: {{ $order->food_name }}</h5>

@@ -16,7 +16,7 @@
         <input type="hidden" value="{{ $restaurant_id }}" name="restaurant_id" />
         <div class="col-md-4 img mb-4 text-center">
             <div class="form-group">
-                <img width="200px" src="{{ url('images/default_food.png') }}" alt="Free Template by Free-Template.co" class="rounded-circle">
+                <img width="200px" src="{{ url('images/default_food.png') }}" class="rounded-circle">
                 <input type="file" class="mt-4" name="image" />
                 @if($errors->has('image'))
                     <div class="alert alert-danger mt-4">{{ $errors->first('image') }}</div>

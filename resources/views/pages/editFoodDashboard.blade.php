@@ -18,9 +18,12 @@
         <div class="col-md-4 img mb-4 text-center">
             <div class="form-group">
             <div
-            style="background: url('{{ url('images') }}/{{ $food->image }}'); height: 250px; width:250px; margin: auto; background-position:center" class="rounded-circle"></div>
+            style="background: url('{{ url('images') }}/{{ $food->image }}'); height: 250px; width:250px; margin: auto; background-position:center; background-repeat: no-repeat;" class="rounded-circle"></div>
             <br/><input type="file" class="mt-4" name="image" />
-            </div>
+            @if($errors->has('image'))
+                <div class="alert alert-danger">{{ $errors->first('image') }}</div>
+            @endif
+        </div>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-6 order-md-first">

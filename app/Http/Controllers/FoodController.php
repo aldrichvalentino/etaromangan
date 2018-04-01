@@ -74,7 +74,7 @@ class FoodController extends Controller
                 $food->image = $fileName;
             } 
             $food->save();
-            return back();
+            return redirect()->route('dashboard.foods', ['id' => Auth::id()]);
         }
     }
 
@@ -141,7 +141,7 @@ class FoodController extends Controller
                 'price' => 'required|numeric|min:1',
                 'description' => 'required|string|max:255',
                 'type' => 'required|string',
-                'image' => 'required|image'
+                'image' => 'nullable|image'
             ]);  
 
             if ($validator->fails()) {
@@ -154,21 +154,33 @@ class FoodController extends Controller
                 $destinationPath = 'images';
                 $fileName = md5('food'. $id . '_pic') .'.'. $file->getClientOriginalExtension();
                 $file->move($destinationPath, $fileName);
-            } 
 
-            DB::table('foods')
-                ->where([
-                    ['id', '=', $id],
-                    ['restaurant_id', '=', $request->restaurant_id],
-                ])    
-                ->update([
-                    'name' => $request->name,
-                    'price' => $request->price,
-                    'description' => $request->description,
-                    'type' => $request->type,
-                    'image' => $fileName,
-                ]);
-            return back();
+                DB::table('foods')
+                    ->where([
+                        ['id', '=', $id],
+                        ['restaurant_id', '=', $request->restaurant_id],
+                    ])    
+                    ->update([
+                        'name' => $request->name,
+                        'price' => $request->price,
+                        'description' => $request->description,
+                        'type' => $request->type,
+                        'image' => $fileName,
+                    ]);
+            } else {
+                DB::table('foods')
+                    ->where([
+                        ['id', '=', $id],
+                        ['restaurant_id', '=', $request->restaurant_id],
+                    ])    
+                    ->update([
+                        'name' => $request->name,
+                        'price' => $request->price,
+                        'description' => $request->description,
+                        'type' => $request->type,
+                    ]);
+            }
+            return redirect()->route('dashboard.foods', ['id' => Auth::id()]);
         }
     }
 

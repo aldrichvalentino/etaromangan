@@ -22,16 +22,6 @@
                 <img src="{{ url('images') }}/{{ $food->image }}" alt="{{ $food->name }}" class="img-fluid">
                 </a>
             </div>
-            {{-- <div class="col-md-4 ftco-animate">
-                <a href="{{ url('images/menu_2.jpg') }}" class="ftco-thumbnail image-popup">
-                    <img src="{{ url('images/menu_2.jpg') }}" alt="Free Template by Free-Template.co" class="img-fluid">
-                </a>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <a href="{{ url('images/menu_3.jpg') }}" class="ftco-thumbnail image-popup">
-                    <img src="{{ url('images/menu_3.jpg') }}" alt="Free Template by Free-Template.co" class="img-fluid">
-                </a>
-            </div> --}}
         </div>
     </div>
 </section>
@@ -58,7 +48,8 @@
                                         style="background: url('{{ url('images') }}/{{ $restaurant->image }}'); 
                                         height: 90px; 
                                         width: 90px;  
-                                        background-position:center" class="rounded-circle mr-4">
+                                        background-position:center;
+                                        background-repeat: no-repeat;" class="rounded-circle mr-4">
                                     </div>
                                     <div class="media-body">
                                         <a class="mt-0" href="{{ url('orders', ['create']) }}?food_id={{ $food->id }}&restaurant_id={{ $restaurant->id }}">

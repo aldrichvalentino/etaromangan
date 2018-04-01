@@ -159,6 +159,11 @@ class UserController extends Controller
         // file upload
         $file = $request->file('image');
         if(!is_null($file)){
+            list($width, $height) = getimagesize($file);
+            if ($width > 512 || $height > 512) {
+                return back()->withErrors(['image' => 'Maximum image size is 512x512 px'])->withInput();
+            }
+
             $destinationPath = 'images';
             $fileName =  md5('user'. $id . '_profpic') . '.' . $file->getClientOriginalExtension();
             $file->move($destinationPath, $fileName);

@@ -6,7 +6,7 @@
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Eta ro mangan!</h2>
             <ul class="list-unstyled">
-              <li><a href="{{ url('home') }}" class="py-2 d-block">Tentang Kami</a></li>
+              <li><a href="{{ url('/') }}" class="py-2 d-block">Tentang Kami</a></li>
               <li><a href="{{ url('menu') }}" class="py-2 d-block">Menu</a></li>
               <li><a href="{{ url('register') }}" class="py-2 d-block">Daftar</a></li>
               <li><a href="mailto:Elisabeth_sirumapea@sbm-itb.ac.id?Subject=[ETAROMANGAN%20Customer%20Complaint]" class="py-2 d-block">Kontak</a></li>

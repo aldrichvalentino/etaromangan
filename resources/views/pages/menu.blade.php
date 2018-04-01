@@ -16,7 +16,7 @@ Menu Makanan
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-6 ftco-animate img" data-animate-effect="fadeInRight">
-                <img width="800px" src="images/about_img_1.jpg" alt="Free Template by Free-Template.co">
+                <img width="800px" src="images/about_img_1.jpg">
             </div>
         </div>
     </div>
@@ -25,7 +25,7 @@ Menu Makanan
     <div class="container">
         <div class="row">
             <div class="ftco-animate img mb-4" data-animate-effect="fadeInLeft">
-                <img width="800px" src="images/about_img_1.jpg" alt="Free Template by Free-Template.co">
+                <img width="800px" src="images/about_img_1.jpg">
             </div>
             <div class="col-md-6"></div>
             <div class="col-md-5 ftco-animate">
