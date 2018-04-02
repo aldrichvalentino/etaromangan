@@ -20,10 +20,10 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        if(Auth::id() != $user->id){
+        if (Auth::id() != $user->id) {
             return redirect('login');
         }
-        if($user->isRestaurant){
+        if ($user->isRestaurant) {
             return redirect()->route('dashboard', [Auth::id()]);
         } else {
             return view('users.userProfile', [
@@ -42,7 +42,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        if(is_null(Auth::id())){
+        if (is_null(Auth::id())) {
             return redirect('login');
         } else {
             return redirect()->route('users.show', [Auth::id()]);
@@ -103,7 +103,7 @@ class UserController extends Controller
                 'phone' => 'required|numeric|digits_between:8,12',
                 'password' => 'nullable|min:6|confirmed',
                 'image' => 'nullable|image',
-            ]);    
+            ]);
         } else {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
@@ -116,20 +116,20 @@ class UserController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        if(!$isRestaurant && !is_null($request->password) && !is_null($request->password_confirmation)){
+        if (!$isRestaurant && !is_null($request->password) && !is_null($request->password_confirmation)) {
             DB::table('users')
                 ->where('id', $id)
                 ->update([
                     'name' => $request->name,
                     'password' => Hash::make($request->password)
                 ]);
-        } else if(!$isRestaurant && is_null($request->password) && is_null($request->password_confirmation)){
+        } elseif (!$isRestaurant && is_null($request->password) && is_null($request->password_confirmation)) {
             DB::table('users')
                 ->where('id', $id)
                 ->update([
                     'name' => $request->name,
                 ]);
-        } else if($isRestaurant && !is_null($request->password) && !is_null($request->password_confirmation)){
+        } elseif ($isRestaurant && !is_null($request->password) && !is_null($request->password_confirmation)) {
             DB::table('users')
                 ->where('id', $id)
                 ->update([
@@ -142,7 +142,7 @@ class UserController extends Controller
                     'phone' => $request->phone,
                     'address' => $request->address,
                 ]);
-        } else if($isRestaurant && is_null($request->password) && is_null($request->password_confirmation)){
+        } elseif ($isRestaurant && is_null($request->password) && is_null($request->password_confirmation)) {
             DB::table('users')
                 ->where('id', $id)
                 ->update([
@@ -158,7 +158,7 @@ class UserController extends Controller
 
         // file upload
         $file = $request->file('image');
-        if(!is_null($file)){
+        if (!is_null($file)) {
             list($width, $height) = getimagesize($file);
             if ($width > 512 || $height > 512) {
                 return back()->withErrors(['image' => 'Maximum image size is 512x512 px'])->withInput();

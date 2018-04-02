@@ -18,7 +18,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        if(Auth::guest()){
+        if (Auth::guest()) {
             return redirect('login');
         } else {
             return view('pages.dashboard');
@@ -31,9 +31,9 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getFoods($id) 
+    public function getFoods($id)
     {
-        if(Auth::id() == $id){
+        if (Auth::id() == $id) {
             $foods = Food::where('restaurant_id', $id)->get();
             return view('pages.foodDashboard', ['foods' => $foods]);
         } else {
@@ -47,9 +47,9 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editFood($id, $food_id) 
+    public function editFood($id, $food_id)
     {
-        if(Auth::id() == $id){
+        if (Auth::id() == $id) {
             $food = Food::find($food_id);
             return view('pages.editFoodDashboard', ['food' => $food]);
         } else {
@@ -65,7 +65,7 @@ class RestaurantController extends Controller
      */
     public function addFood($id)
     {
-        if (Auth::id() != $id){
+        if (Auth::id() != $id) {
             return response('Forbidden', 403);
         } else {
             return view('pages.createFoodDashboard', ['restaurant_id' => Auth::id()]);
@@ -78,9 +78,9 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getOrders($id) 
+    public function getOrders($id)
     {
-        if(Auth::id() == $id){
+        if (Auth::id() == $id) {
             $orders = DB::table('orders')
                 ->join('users', 'users.id', '=', 'orders.user_id')
                 ->join('foods', 'foods.id', '=', 'orders.food_id')
@@ -110,7 +110,7 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        if(Auth::id() != $id){
+        if (Auth::id() != $id) {
             return redirect('login');
         } else {
             return view('pages.dashboard');

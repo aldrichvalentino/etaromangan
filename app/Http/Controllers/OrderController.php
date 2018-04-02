@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Validator;
 use App\Order;
 use App\Restaurant;
+use App\User;
+use App\Mail\OrderCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\MessageBag;
 
 class OrderController extends Controller
@@ -28,12 +31,12 @@ class OrderController extends Controller
                 ->join('restaurants', 'restaurants.id', '=', 'orders.restaurant_id')
                 ->join('users', 'users.id', '=', 'orders.restaurant_id')
                 ->select(
-                    'foods.name AS food_name', 
+                    'foods.name AS food_name',
                     'foods.image AS food_image',
                     'users.name AS restaurant_name',
-                    'orders.total', 
-                    'orders.address', 
-                    'orders.status', 
+                    'orders.total',
+                    'orders.address',
+                    'orders.status',
                     'orders.quantity',
                     'restaurants.phone AS restaurant_phone'
                 )
@@ -98,7 +101,7 @@ class OrderController extends Controller
                     ])
                     ->select('price')
                     ->get();
-        
+
         if ($price->isEmpty()) {
             return back()->withInput()->withErrors(['food_id' => 'Food and restaurant does not match']);
         } else {
@@ -126,6 +129,12 @@ class OrderController extends Controller
             $order->total = $request->quantity * $price[0]->price;
 
             $order->save();
+
+            $restaurant = Restaurant::find($order->restaurant_id);
+            $user = User::find($restaurant->id);
+
+            Mail::to($user->email)->send(new OrderCreated($order, $restaurant, $user));
+
             return redirect('orders');
         }
     }

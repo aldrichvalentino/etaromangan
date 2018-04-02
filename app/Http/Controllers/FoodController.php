@@ -40,7 +40,7 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::id() != $request->restaurant_id){
+        if (Auth::id() != $request->restaurant_id) {
             return response('Forbidden', 403);
         } else {
             $validator = Validator::make($request->all(), [
@@ -49,7 +49,7 @@ class FoodController extends Controller
                 'description' => 'required|string|max:255',
                 'type' => 'required|string',
                 'image' => 'required|image',
-            ]);  
+            ]);
 
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();
@@ -67,12 +67,12 @@ class FoodController extends Controller
             $food->type = $request->type;
 
             $file = $request->file('image');
-            if(!is_null($file)){
+            if (!is_null($file)) {
                 $destinationPath = 'images';
                 $fileName = md5('food'. ($maxFoodID + 1) . '_pic') . '.' . $file->getClientOriginalExtension();
                 $file->move($destinationPath, $fileName);
                 $food->image = $fileName;
-            } 
+            }
             $food->save();
             return redirect()->route('dashboard.foods', ['id' => Auth::id()]);
         }
@@ -133,7 +133,7 @@ class FoodController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::id() != $request->restaurant_id){
+        if (Auth::id() != $request->restaurant_id) {
             return response('Forbidden', 403);
         } else {
             $validator = Validator::make($request->all(), [
@@ -142,7 +142,7 @@ class FoodController extends Controller
                 'description' => 'required|string|max:255',
                 'type' => 'required|string',
                 'image' => 'nullable|image'
-            ]);  
+            ]);
 
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();
@@ -150,7 +150,7 @@ class FoodController extends Controller
 
             $file = $request->file('image');
             $fileName = '';
-            if(!is_null($file)){
+            if (!is_null($file)) {
                 $destinationPath = 'images';
                 $fileName = md5('food'. $id . '_pic') .'.'. $file->getClientOriginalExtension();
                 $file->move($destinationPath, $fileName);
@@ -159,7 +159,7 @@ class FoodController extends Controller
                     ->where([
                         ['id', '=', $id],
                         ['restaurant_id', '=', $request->restaurant_id],
-                    ])    
+                    ])
                     ->update([
                         'name' => $request->name,
                         'price' => $request->price,
@@ -172,7 +172,7 @@ class FoodController extends Controller
                     ->where([
                         ['id', '=', $id],
                         ['restaurant_id', '=', $request->restaurant_id],
-                    ])    
+                    ])
                     ->update([
                         'name' => $request->name,
                         'price' => $request->price,

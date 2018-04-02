@@ -72,7 +72,7 @@ class RegisterController extends Controller
             'isRestaurant' => array_key_exists('isRestaurant', $data) ? true : false,
         ]);
 
-        if(array_key_exists('isRestaurant', $data)){
+        if (array_key_exists('isRestaurant', $data)) {
             DB::table('restaurants')
                 ->insert([
                     'id' => $result->id,
