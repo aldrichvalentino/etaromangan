@@ -5,7 +5,7 @@ Login
 @endsection
 
 @section('content')
-<section class="ftco-section" id="section-login">
+<section class="mt-5" id="section-login">
     <div class="container">
         <h1 class="row mb-4 justify-content-center">
             {{ config('app.name') }}
@@ -16,12 +16,11 @@ Login
                     <div class="card-header">
                         Login
                     </div>
-
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group row">
-                                <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail Address</label>
+                                <label for="email" class="col-sm-4 col-form-label text-md-right">Alamat E-mail</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
@@ -49,7 +48,7 @@ Login
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
+                                <div class="col-md-6 offset-md-4 text-left">
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
@@ -58,15 +57,21 @@ Login
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
+                            <div class="form-group row">
+                                <div class="col-md-6 offset-md-4 text-left">
                                     <button type="submit" class="btn btn-primary">
                                         Login
                                     </button>
+                                    <div class="mt-4">
+                                        Belum punya akun?<a href="{{ route('register') }}"> Daftar di sini.</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
 
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        Forgot Your Password?
-                                    </a>
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4 text-left">
+                                    <a class="btn-link" href="{{ route('password.request') }}">Lupa Password?</a>
                                 </div>
                             </div>
                         </form>

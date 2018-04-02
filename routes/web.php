@@ -17,7 +17,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /* Static routes */
 Route::get('/', function () {
-    return view('pages.index', [
+    return view('pages.home', [
         'show_navbar' => true,
         'show_footer' => true
     ]);
@@ -33,10 +33,15 @@ Route::get('/menu', function () {
 
 Route::get('/menu/{type}', 'FoodController@getFoodsByType');
 
-Route::get('/dashboard', function () {
-    return view('pages.dashboard');
-})->name('dashboard');
+/* Dashboard Routes */
+Route::get('/dashboard/{id}', 'RestaurantController@show')->name('dashboard');
+Route::get('/dashboard/{id}/foods', 'RestaurantController@getFoods')->name('dashboard.foods');
+Route::get('/dashboard/{id}/orders', 'RestaurantController@getOrders')->name('dashboard.orders');
+Route::get('/dashboard/{id}/edit', 'RestaurantController@edit')->name('dashboard.edit');
+Route::get('/dashboard/{id}/foods/{food_id}/edit', 'RestaurantController@editFood');
+Route::get('/dashboard/{id}/foods/create', 'RestaurantController@addFood');
 
 /* Resource routes */
 Route::resource('foods', 'FoodController');
 Route::resource('orders', 'OrderController');
+Route::resource('users', 'UserController');

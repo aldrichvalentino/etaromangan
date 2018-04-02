@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Food;
 use App\Restaurant;
+use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
 {
@@ -38,7 +40,42 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Auth::id() != $request->restaurant_id) {
+            return response('Forbidden', 403);
+        } else {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'price' => 'required|numeric|min:1',
+                'description' => 'required|string|max:255',
+                'type' => 'required|string',
+                'image' => 'required|image',
+            ]);
+
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput();
+            }
+
+            $maxFoodID = DB::table('foods')
+                ->max('id');
+
+            $food = new Food;
+            $food->id = $maxFoodID + 1;
+            $food->name = $request->name;
+            $food->price = $request->price;
+            $food->description = $request->description;
+            $food->restaurant_id = $request->restaurant_id;
+            $food->type = $request->type;
+
+            $file = $request->file('image');
+            if (!is_null($file)) {
+                $destinationPath = 'images';
+                $fileName = md5('food'. ($maxFoodID + 1) . '_pic') . '.' . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+                $food->image = $fileName;
+            }
+            $food->save();
+            return redirect()->route('dashboard.foods', ['id' => Auth::id()]);
+        }
     }
 
     /**
@@ -54,11 +91,13 @@ class FoodController extends Controller
             return response('Not Found', 404);
         }
         $restaurants = DB::table('restaurants')
+                        ->join('users', 'users.id', '=', 'restaurants.id')
                         ->join('foods', 'foods.restaurant_id', '=', 'restaurants.id')
                         ->where('foods.name', $results->name)
                         ->select(
                             'restaurants.id',
-                            'restaurants.name',
+                            'users.name',
+                            'users.image',
                             'restaurants.address',
                             'restaurants.phone',
                             'foods.price'
@@ -94,7 +133,55 @@ class FoodController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (Auth::id() != $request->restaurant_id) {
+            return response('Forbidden', 403);
+        } else {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'price' => 'required|numeric|min:1',
+                'description' => 'required|string|max:255',
+                'type' => 'required|string',
+                'image' => 'nullable|image'
+            ]);
+
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput();
+            }
+
+            $file = $request->file('image');
+            $fileName = '';
+            if (!is_null($file)) {
+                $destinationPath = 'images';
+                $fileName = md5('food'. $id . '_pic') .'.'. $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+
+                DB::table('foods')
+                    ->where([
+                        ['id', '=', $id],
+                        ['restaurant_id', '=', $request->restaurant_id],
+                    ])
+                    ->update([
+                        'name' => $request->name,
+                        'price' => $request->price,
+                        'description' => $request->description,
+                        'type' => $request->type,
+                        'image' => $fileName,
+                    ]);
+            } else {
+                DB::table('foods')
+                    ->where([
+                        ['id', '=', $id],
+                        ['restaurant_id', '=', $request->restaurant_id],
+                    ])
+                    ->update([
+                        'name' => $request->name,
+                        'price' => $request->price,
+                        'description' => $request->description,
+                        'type' => $request->type,
+                    ]);
+            }
+            return redirect()->route('dashboard.foods', ['id' => Auth::id()]);
+        }
     }
 
     /**
@@ -121,7 +208,7 @@ class FoodController extends Controller
         }
 
         $results = DB::table('foods')
-                ->select('name', 'price', 'type', 'id')
+                ->select('name', 'price', 'type', 'id', 'description', 'image')
                 ->where('type', $type)
                 ->orderBy('name')
                 ->distinct()

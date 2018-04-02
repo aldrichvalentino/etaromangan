@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Order;
+use App\Restaurant;
+use App\User;
+use App\Mail\OrderCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\MessageBag;
 
 class OrderController extends Controller
@@ -22,7 +26,29 @@ class OrderController extends Controller
         if (is_null($userId)) {
             return redirect('login');
         } else {
-            return view('orders.orders', ['orders' => Order::where('user_id', $userId)->paginate(10)]);
+            $orders = DB::table('orders')
+                ->join('foods', 'foods.id', '=', 'orders.food_id')
+                ->join('restaurants', 'restaurants.id', '=', 'orders.restaurant_id')
+                ->join('users', 'users.id', '=', 'orders.restaurant_id')
+                ->select(
+                    'foods.name AS food_name',
+                    'foods.image AS food_image',
+                    'users.name AS restaurant_name',
+                    'orders.total',
+                    'orders.address',
+                    'orders.status',
+                    'orders.quantity',
+                    'restaurants.phone AS restaurant_phone'
+                )
+                ->orderBy('orders.created_at', 'desc')
+                ->where('orders.user_id', '=', $userId)
+                ->paginate(10);
+            return view('orders.orders', [
+                'orders' => $orders,
+                'show_navbar' => true,
+                'trans_navbar' => false,
+                'show_footer' => true
+            ]);
         }
     }
 
@@ -38,19 +64,24 @@ class OrderController extends Controller
         if ($food_id == null || $restaurant_id == null) {
             return redirect('menu');
         }
-        $price = DB::table('foods')
+        $restaurant = DB::table('users')
+                    ->where('id', '=', $restaurant_id)
+                    ->select('id', 'name')
+                    ->get();
+        $food_info = DB::table('foods')
                     ->where([
                         ['id', '=', $request->food_id],
                         ['restaurant_id', '=', $request->restaurant_id]
                     ])
-                    ->select('price')
+                    ->select('price', 'name', 'description', 'image')
                     ->get();
 
         return view('orders.createOrder', [
             'food_id' => $food_id,
-            'restaurant_id' => $restaurant_id,
-            'price' => $price,
+            'restaurant_info' => $restaurant,
+            'food_info' => $food_info,
             'show_navbar' => true,
+            'trans_navbar' => false,
             'show_footer' => true
         ]);
     }
@@ -98,6 +129,12 @@ class OrderController extends Controller
             $order->total = $request->quantity * $price[0]->price;
 
             $order->save();
+
+            $restaurant = Restaurant::find($order->restaurant_id);
+            $user = User::find($restaurant->id);
+
+            Mail::to($user->email)->send(new OrderCreated($order, $restaurant, $user));
+
             return redirect('orders');
         }
     }
@@ -133,7 +170,10 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        DB::table('orders')
+            ->where('id', $request->orderID)
+            ->update(['status' => 'done']);
+        return back();
     }
 
     /**

@@ -12,25 +12,28 @@
       </li>
     @else
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('dashboard') }}"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-primary">NEW</span></a>
+        <a class="nav-link" href="{{ url('dashboard') }}/{{ Auth::id() }}"><i class="icon-speedometer"></i> Dashboard</a>
       </li>
       <li class="nav-title">
-        Components
+        Beranda
       </li>
-      <li class="nav-item nav-dropdown">
-        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Base</a>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('dashboard') }}/{{ Auth::id() }}/orders"><i class="fa fa-list-ul"></i>Pesanan</a>
+      </li>
+      <li class="nav-item nav-dropdown"> {{-- todo: bikin makanan ada dropdown -> daftar, tambah, hapus --}}
+        <a class="nav-link nav-dropdown-toggle" 
+          href="{{ url('dashboard') }}/{{ Auth::id() }}/foods"><i class="fa fa-cutlery"></i>Makanan</a>
         <ul class="nav-dropdown-items">
           <li class="nav-item">
-            <a class="nav-link" href="base-breadcrumb.html"><i class="icon-puzzle"></i> Breadcrumb</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="base-cards.html"><i class="icon-puzzle"></i> Cards</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="base-carousel.html"><i class="icon-puzzle"></i> Carousel</a>
+            <a class="nav-link" 
+              href="{{ url('dashboard') }}/{{ Auth::id() }}/foods/create"><i class="fa fa-plus"></i>Tambah</a>
           </li>
         </ul>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('dashboard') }}/{{ Auth::id() }}/edit"><i class="fa fa-cog"></i>Pengaturan</a>
+      </li>
+      
     @endguest
   </ul>
 </nav>

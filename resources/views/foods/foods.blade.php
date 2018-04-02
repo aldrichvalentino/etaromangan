@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+@if($type === 'halal')
+Menu Halal
+@elseif($type === 'nonhalal')
+Menu Non-Halal
+@endif
+@endsection
+
 @section('navbar-additional-class')
 scrolled awake
 @endsection
@@ -26,9 +34,7 @@ scrolled awake
                 </h2>
                 <div class="row justify-content-center">
                     <div class="col-md-7">
-                        <p class="lead">
-                            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                            the blind texts.
+                        <p class="lead">Kau bebas wak mau pilih menu halal dan non halal. Pilih yang kau suka aja la.
                         </p>
                     </div>
                 </div>
@@ -40,21 +46,27 @@ scrolled awake
                             <div class="col-md-12 ftco-animate">
                                 @forelse($foods as $food)
                                     <div class="media menu-item">
-                                        <img class="mr-5" src="{{ url('images/menu_1.jpg') }}" class="img-fluid" alt="Free Template by Free-Template.co">
+                                        <div 
+                                            style="background: url('{{ url('images') }}/{{ $food->image }}'); 
+                                            height: 90px; 
+                                            width: 90px; 
+                                            margin: auto; 
+                                            background-position:center;
+                                            background-repeat: no-repeat;" class="rounded-circle mr-4">
+                                        </div>
                                         <div class="media-body">
                                             <h5 class="mt-0">
                                                 <a href="{{ url('foods', ['id' => $food->id]) }}">
                                                     {{ $food->name }}
                                                 </a>
                                             </h5>
-                                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                                                there live the blind texts.</p>
+                                            <p>{{ $food->description }}</p>
                                             <h6 class="text-primary menu-price">Rp{{ $food->price }}</h6>
                                         </div>
                                     </div>
                                 @empty
-                                    <div class="media menu-item text-center">
-                                        <h1>Food type's not found :(</h1>
+                                    <div class="text-center">
+                                        <p class="lead">Makanan tidak ditemukan :(</p>
                                     </div>
                                 @endforelse
 
