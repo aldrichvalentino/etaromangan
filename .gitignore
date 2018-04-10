@@ -15,3 +15,4 @@ yarn-error.log
 .env
 .DS_Store
 .env.docker
+/mysql-data
