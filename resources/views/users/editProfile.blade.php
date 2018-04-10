@@ -13,10 +13,10 @@
             <div class="col-md-1"></div>
             <div class="col-md-6 ftco-animate mb-5 text-center" data-animate-effect="fadeInRight">
                 <div
-                    style="background: url('{{ url('images') }}/{{ $user->image }}'); 
-                        height: 250px; width:250px; margin: auto; 
-                        background-position:center; 
-                        background-repeat: no-repeat;" 
+                    style="background: url('{{ url('images/userpic') }}/{{ $user->image }}');
+                        height: 250px; width:250px; margin: auto;
+                        background-position:center;
+                        background-repeat: no-repeat;"
                         class="rounded-circle">
                 </div>
                 <br/><input type="file" class="mt-4" name="image" />
@@ -24,7 +24,7 @@
                     <div class="alert alert-danger mt-4">{{ $errors->first('image') }}</div>
                 @endif
             </div>
-            
+
             <div class="col-md-5 ftco-animate order-md-first mb-5">
                 <h2 class="ftco-primary-title display-4">Edit Profile</h2>
                 <div class="form-group mb-5">
@@ -45,9 +45,9 @@
                 </div>
                 <p><button type="submit" class="btn btn-primary btn-lg">Submit</button>
             </div>
-            
-            
-            
+
+
+
         </div>
     </form>
 </section>

@@ -10,7 +10,7 @@
         <div class="row text-center text-md-left">
             <div class="col-md-6 ftco-animate img order-first mb-5" data-animate-effect="fadeInRight">
                 <div
-                style="background: url('{{ url('images') }}/{{ $user->image }}'); height: 250px; width:250px; margin: auto; background-position:center; background-repeat: no-repeat;" class="rounded-circle"></div>
+                style="background: url('{{ url('images/userpic') }}/{{ $user->image }}'); height: 250px; width:250px; margin: auto; background-position:center; background-repeat: no-repeat;" class="rounded-circle"></div>
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-5 ftco-animate mb-5">
