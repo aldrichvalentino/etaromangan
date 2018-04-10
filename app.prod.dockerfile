@@ -31,7 +31,7 @@ RUN chown -R www-data:www-data /opt/etaromangan/storage
 RUN mkdir -p /opt/etaromangan/bootstrap/cache
 RUN chmod -R 0755 /opt/etaromangan/bootstrap/cache
 RUN chown -R www-data:www-data /opt/etaromangan/bootstrap/cache
-RUN chmod -R 0777 /opt/etaromangan/public/images
+RUN chmod -R 0755 /opt/etaromangan/public/images
 RUN chown -R www-data:www-data /opt/etaromangan/public/images
 
 # Regenerate autoloader classmap and run post-install scripts

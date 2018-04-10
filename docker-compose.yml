@@ -18,6 +18,7 @@ services:
       dockerfile: app.dockerfile
     volumes:
       - .:/opt/etaromangan
+      - ./public:/opt/etaromangan/public
       - /opt/etaromangan/vendor/
       - /opt/etaromangan/node_modules/
       - app_storage:/opt/etaromangan/storage # Uploads and data storage
