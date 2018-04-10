@@ -111,7 +111,7 @@ class UserController extends Controller
                 'image' => 'nullable|image',
             ]);
         }
-        
+
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
@@ -166,15 +166,15 @@ class UserController extends Controller
 
             $destinationPath = 'images';
             $fileName =  md5('user'. $id . '_profpic') . '.' . $file->getClientOriginalExtension();
-            $file->move($destinationPath, $fileName);
-            
+            $file->move(public_path($destinationPath), $fileName);
+
             DB::table('users')
                 ->where('id', $id)
                 ->update([
                     'image' => $fileName,
                 ]);
         }
-        
+
         if ($isRestaurant) {
             return redirect()->route('dashboard.edit', [Auth::id()]);
         } else {
