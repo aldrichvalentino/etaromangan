@@ -164,7 +164,7 @@ class UserController extends Controller
                 return back()->withErrors(['image' => 'Maximum image size is 512x512 px'])->withInput();
             }
 
-            $destinationPath = 'images';
+            $destinationPath = 'images/userpic';
             $fileName =  md5('user'. $id . '_profpic') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($destinationPath), $fileName);
 
