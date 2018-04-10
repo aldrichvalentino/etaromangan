@@ -13,7 +13,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-6 ftco-animate mb-5 text-center" data-animate-effect="fadeInRight">
                 <div
-                    style="background: url('{{ url('images/userpic') }}/{{ $user->image }}');
+                    style="background: url('{{ url('images') }}/{{ $user->image }}');
                         height: 250px; width:250px; margin: auto;
                         background-position:center;
                         background-repeat: no-repeat;"
