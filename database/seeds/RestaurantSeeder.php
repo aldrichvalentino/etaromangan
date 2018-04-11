@@ -12,7 +12,7 @@ class RestaurantSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => ' WARUNG MAKAN KA’ ZAHRA',
+            'name' => 'WARUNG MAKAN KA’ ZAHRA',
             'email' => 'default@gmail.com',
             'password' => Hash::make('warungmakankazahra'),
             'image' => 'default.png',

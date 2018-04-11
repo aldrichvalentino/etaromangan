@@ -11,7 +11,7 @@
       <li class="nav-item active"><a href="{{ url('home') }}" class="nav-link">Home</a></li>
       <li class="nav-item"><a href="{{ url('menu') }}" class="nav-link">Menu</a></li>
       <li class="nav-item"><a href="{{ url('orders') }}" class="nav-link">Order</a></li>
-      <li class="nav-item"><a href="{{ url('users') }}/{{ Auth::id() }}" class="nav-link">Akun</a></li>
+      <li class="nav-item"><a href="{{ url('users') }}/{{ Auth::id() }}" class="nav-link">Account</a></li>
       @if(Auth::guest())
       <li class="nav-item"><a href="{{ url('login') }}" class="nav-link">Login</a></li>
       @else
