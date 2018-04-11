@@ -9,7 +9,7 @@
 | {{ $food->name }} | {{ $food->price }} | {{ $order->quantity }} |  Rp{{ $order->total }}
 @endcomponent
 
-@component('mail::button', ['url' => $url, 'color' => 'orange'])
+@component('mail::button', ['url' => url($url), 'color' => 'orange'])
 Cek Pesanan!
 @endcomponent
 
