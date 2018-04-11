@@ -46,7 +46,7 @@ RUN php artisan route:clear
 
 # Regenerate cache (TODO: check whether to enable this in dev)
 RUN php artisan config:cache
-# RUN php artisan route:cache
+RUN php artisan route:cache
 
 EXPOSE 9000
 CMD ["php-fpm"]

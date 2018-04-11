@@ -28,4 +28,13 @@ class HomeController extends Controller
             'show_footer' => true
         ]);
     }
+
+    public function menu()
+    {
+        return view('pages.menu', [
+            'show_navbar' => true,
+            'trans_navbar' => false,
+            'show_footer' => true
+        ]);
+    }
 }

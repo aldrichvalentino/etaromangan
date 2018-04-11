@@ -133,7 +133,7 @@ class OrderController extends Controller
             $restaurant = Restaurant::find($order->restaurant_id);
             $user = User::find($restaurant->id);
 
-            // Mail::to($user->email)->send(new OrderCreated($order, $restaurant, $user));
+            Mail::to($user->email)->send(new OrderCreated($order, $restaurant, $user));
 
             return redirect('orders');
         }

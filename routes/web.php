@@ -16,20 +16,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 /* Static routes */
-Route::get('/', function () {
-    return view('pages.home', [
-        'show_navbar' => true,
-        'show_footer' => true
-    ]);
-});
+Route::get('/', 'HomeController@index')->name('index');
 
-Route::get('/menu', function () {
-    return view('pages.menu', [
-        'show_navbar' => true,
-        'trans_navbar' => false,
-        'show_footer' => true
-    ]);
-});
+Route::get('/menu', 'HomeController@menu')->name('menu');
 
 Route::get('/menu/{type}', 'FoodController@getFoodsByType');
 
