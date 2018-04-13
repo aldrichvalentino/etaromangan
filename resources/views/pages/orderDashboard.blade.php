@@ -17,6 +17,7 @@
                     <tr>    
                         <th scope="col">ID Order</th>
                         <th scope="col">Nama Pemesan</th>
+                        <th scope="col">Telepon</th>
                         <th scope="col">Nama Makanan</th>
                         <th scope="col">Jumlah</th>
                         <th scope="col">Total</th>
@@ -29,6 +30,7 @@
                     <tr>
                         <th scope="row">{{ $order->id }}</td>
                         <td>{{ $order->user_name }}</td>
+                        <td>{{ $order->phone }}</td>
                         <td>{{ $order->food_name }}</td>
                         <td>{{ $order->quantity }}</td>
                         <td>{{ $order->total }}</td>

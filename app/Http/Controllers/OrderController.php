@@ -112,7 +112,8 @@ class OrderController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'quantity' => 'required|numeric|min:1',
-                'address' => 'required'
+                'address' => 'required',
+                'phone' => 'required|numeric'
             ]);
 
             if ($validator->fails()) {
@@ -124,6 +125,7 @@ class OrderController extends Controller
             $order->food_id = $request->food_id;
             $order->restaurant_id = $request->restaurant_id;
             $order->quantity = $request->quantity;
+            $order->phone = $request->phone;
             $order->status = "processed";
             $order->address = $request->address;
             $order->total = $request->quantity * $price[0]->price;

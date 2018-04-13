@@ -89,6 +89,7 @@ class RestaurantController extends Controller
                     'orders.id',
                     'users.name AS user_name',
                     'foods.name AS food_name',
+                    'orders.phone',
                     'orders.quantity',
                     'orders.total',
                     'orders.status',

@@ -21,7 +21,7 @@ Order
                     {{ csrf_field() }}
                     <input type="hidden" value="{{ $food_id }}" name="food_id" />
                     @if($errors->has('food_id'))
-                        <div class="alert alert-danger">{{ $errors->first('food_id') }}</div>
+                        <div class="alert alert-danger mt-2">{{ $errors->first('food_id') }}</div>
                     @endif
                     <input type="hidden" value="{{ $restaurant_info[0]->id }}" name="restaurant_id" />
 
@@ -29,7 +29,15 @@ Order
                         <label for="quantity">Jumlah:</label>
                         <input type="number" placeholder="ex: 10" id="quantity" class="form-control" name="quantity" />
                         @if($errors->has('quantity'))
-                            <div class="alert alert-danger">{{ $errors->first('quantity') }}</div>
+                            <div class="alert alert-danger mt-2">{{ $errors->first('quantity') }}</div>
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Nomor Telepon:</label>
+                        <input type="text" placeholder="ex: 08XXXXXXXXX" id="phone" class="form-control" name="phone" />
+                        @if($errors->has('phone'))
+                            <div class="alert alert-danger mt-2">{{ $errors->first('phone') }}</div>
                         @endif
                     </div>
 
@@ -37,7 +45,7 @@ Order
                         <label>Alamat:</label>
                         <textarea placeholder="ex: Jalan Ganesha No.10, Coblong, Bandung" class="form-control" name="address"></textarea>
                         @if($errors->has('address'))
-                            <div class="alert alert-danger">{{ $errors->first('address') }}</div>
+                            <div class="alert alert-danger mt-2">{{ $errors->first('address') }}</div>
                         @endif
                     </div>
 
