@@ -37,7 +37,7 @@ class RestaurantController extends Controller
             $foods = Food::where('restaurant_id', $id)->get();
             return view('pages.foodDashboard', ['foods' => $foods]);
         } else {
-            return response('Forbidden', 403);
+            return redirect()->route('dashboard', ['id' => Auth::id()]);
         }
     }
 
@@ -53,7 +53,7 @@ class RestaurantController extends Controller
             $food = Food::find($food_id);
             return view('pages.editFoodDashboard', ['food' => $food]);
         } else {
-            return response('Forbidden', 403);
+            return redirect()->route('dashboard', ['id' => Auth::id()]);
         }
     }
 
@@ -66,7 +66,7 @@ class RestaurantController extends Controller
     public function addFood($id)
     {
         if (Auth::id() != $id) {
-            return response('Forbidden', 403);
+            return redirect()->route('dashboard', ['id' => Auth::id()]);
         } else {
             return view('pages.createFoodDashboard', ['restaurant_id' => Auth::id()]);
         }
@@ -99,7 +99,7 @@ class RestaurantController extends Controller
                 ->get();
             return view('pages.orderDashboard', ['orders' => $orders]);
         } else {
-            return response('Forbidden', 403);
+            return redirect()->route('dashboard', ['id' => Auth::id()]);
         }
     }
 
@@ -112,7 +112,7 @@ class RestaurantController extends Controller
     public function show($id)
     {
         if (Auth::id() != $id) {
-            return redirect('login');
+            return redirect()->route('dashboard', ['id' => Auth::id()]);
         } else {
             return view('pages.dashboard');
         }

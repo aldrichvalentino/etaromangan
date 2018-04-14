@@ -52,6 +52,7 @@ Order
                     <div class="form-group">
                         <div class="lead">
                             <div>Total harga = Rp<span id="total">0</span></div>
+                            <span class="alert-warning font-italic">Harga belum termasuk ongkos kirim sebesar Rp5000/km</span>
                             @if($errors->has('total'))
                                 <div class="alert alert-danger">{{ $errors->first('total') }}</div>
                             @endif
