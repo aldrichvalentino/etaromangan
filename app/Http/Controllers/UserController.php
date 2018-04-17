@@ -23,7 +23,7 @@ class UserController extends Controller
         if (Auth::id() != $user->id) {
             return redirect('login');
         }
-        if ($user->isRestaurant) {
+        if (strcmp($user->role, 'restaurant') === 0) {
             return redirect()->route('dashboard', [Auth::id()]);
         } else {
             return view('users.userProfile', [
@@ -95,8 +95,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $isRestaurant = User::find($id)->isRestaurant;
-        if ($isRestaurant) {
+        $role = User::find($id)->role;
+        if (strcmp($role, 'restaurant') === 0) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'address' => 'required|string|max:255',
@@ -116,44 +116,53 @@ class UserController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        if (!$isRestaurant && !is_null($request->password) && !is_null($request->password_confirmation)) {
-            DB::table('users')
-                ->where('id', $id)
-                ->update([
-                    'name' => $request->name,
-                    'password' => Hash::make($request->password)
-                ]);
-        } elseif (!$isRestaurant && is_null($request->password) && is_null($request->password_confirmation)) {
-            DB::table('users')
-                ->where('id', $id)
-                ->update([
-                    'name' => $request->name,
-                ]);
-        } elseif ($isRestaurant && !is_null($request->password) && !is_null($request->password_confirmation)) {
-            DB::table('users')
-                ->where('id', $id)
-                ->update([
-                    'name' => $request->name,
-                    'password' => Hash::make($request->password)
-                ]);
-            DB::table('restaurants')
-                ->where('id', $id)
-                ->update([
-                    'phone' => $request->phone,
-                    'address' => $request->address,
-                ]);
-        } elseif ($isRestaurant && is_null($request->password) && is_null($request->password_confirmation)) {
-            DB::table('users')
-                ->where('id', $id)
-                ->update([
-                    'name' => $request->name,
-                ]);
-            DB::table('restaurants')
-                ->where('id', $id)
-                ->update([
-                    'phone' => $request->phone,
-                    'address' => $request->address,
-                ]);
+        switch ($role) {
+            case 'user' : {
+                if (!is_null($request->password) && !is_null($request->password_confirmation)) {
+                    DB::table('users')
+                        ->where('id', $id)
+                        ->update([
+                            'name' => $request->name,
+                            'password' => Hash::make($request->password)
+                        ]);
+                } elseif (is_null($request->password) && is_null($request->password_confirmation)) {
+                    DB::table('users')
+                        ->where('id', $id)
+                        ->update([
+                            'name' => $request->name,
+                        ]);
+                }
+                break;
+            }
+            case 'restaurant' : {
+                if (!is_null($request->password) && !is_null($request->password_confirmation)) {
+                    DB::table('users')
+                        ->where('id', $id)
+                        ->update([
+                            'name' => $request->name,
+                            'password' => Hash::make($request->password)
+                        ]);
+                    DB::table('restaurants')
+                        ->where('id', $id)
+                        ->update([
+                            'phone' => $request->phone,
+                            'address' => $request->address,
+                        ]);
+                } elseif (is_null($request->password) && is_null($request->password_confirmation)) {
+                    DB::table('users')
+                        ->where('id', $id)
+                        ->update([
+                            'name' => $request->name,
+                        ]);
+                    DB::table('restaurants')
+                        ->where('id', $id)
+                        ->update([
+                            'phone' => $request->phone,
+                            'address' => $request->address,
+                        ]);
+                }
+                break;
+            }
         }
 
         // file upload
@@ -175,8 +184,8 @@ class UserController extends Controller
                 ]);
         }
 
-        if ($isRestaurant) {
-            return redirect()->route('dashboard.edit', [Auth::id()]);
+        if ($role === 'restaurant') {
+            return redirect()->route('dashboard', [Auth::id()]);
         } else {
             return view('users.userProfile', [
                 'user' => User::find($id),

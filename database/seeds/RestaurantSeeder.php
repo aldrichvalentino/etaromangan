@@ -16,7 +16,7 @@ class RestaurantSeeder extends Seeder
             'email' => 'default@gmail.com',
             'password' => Hash::make('warungmakankazahra'),
             'image' => 'default.png',
-            'isRestaurant' => true,
+            'role' => 'restaurant',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

@@ -56,8 +56,8 @@
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-4 text-left">
                                     <div class="checkbox">
-                                        <label for="isRestaurant">
-                                        <input type="checkbox" id="isRestaurant" name="isRestaurant" />
+                                        <label for="role">
+                                        <input type="checkbox" id="role" name="role" />
                                             Daftar Sebagai Restoran
                                         </label>
                                     </div>

@@ -69,10 +69,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'image' => 'default.png',
-            'isRestaurant' => array_key_exists('isRestaurant', $data) ? true : false,
+            'role' => array_key_exists('role', $data) ? 'restaurant' : 'user',
         ]);
 
-        if (array_key_exists('isRestaurant', $data)) {
+        if (array_key_exists('role', $data)) {
             DB::table('restaurants')
                 ->insert([
                     'id' => $result->id,
