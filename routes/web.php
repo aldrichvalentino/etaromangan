@@ -30,6 +30,9 @@ Route::get('/dashboard/{id}/edit', 'RestaurantController@edit')->name('dashboard
 Route::get('/dashboard/{id}/foods/{food_id}/edit', 'RestaurantController@editFood');
 Route::get('/dashboard/{id}/foods/create', 'RestaurantController@addFood');
 
+/* Admin routes */
+Route::get('/admin', 'UserController@index')->name('admin');
+
 /* Resource routes */
 Route::resource('foods', 'FoodController');
 Route::resource('orders', 'OrderController');

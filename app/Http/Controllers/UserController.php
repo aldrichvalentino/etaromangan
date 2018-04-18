@@ -25,13 +25,15 @@ class UserController extends Controller
         }
         if (strcmp($user->role, 'restaurant') === 0) {
             return redirect()->route('dashboard', [Auth::id()]);
-        } else {
+        } elseif (strcmp(Auth::user()->role, 'user') === 0) {
             return view('users.userProfile', [
                 'user' => $user,
                 'show_navbar' => true,
                 'trans_navbar' => false,
                 'show_footer' => true
             ]);
+        } elseif (strcmp(Auth::user()->role, 'admin') === 0) {
+            return redirect('admin');
         }
     }
 
@@ -44,8 +46,27 @@ class UserController extends Controller
     {
         if (is_null(Auth::id())) {
             return redirect('login');
-        } else {
+        } elseif (strcmp(Auth::user()->role, 'user') === 0) {
             return redirect()->route('users.show', [Auth::id()]);
+        } elseif (strcmp(Auth::user()->role, 'admin') === 0) {
+            // admin
+            $users = User::all();
+            $countUsers = DB::table('users')
+                    ->where('role', 'user')
+                    ->count();
+            $countRestaurants = DB::table('users')
+                    ->where('role', 'restaurant')
+                    ->count();
+            $admin = User::find(Auth::id());
+            return view('pages.admin', [
+                'users' => $users,
+                'countUsers' => $countUsers,
+                'countRestaurants' => $countRestaurants,
+                'admin' => $admin,
+                'show_navbar' => true,
+                'trans_navbar' => false,
+                'show_footer' => true
+            ]);
         }
     }
 
@@ -163,6 +184,23 @@ class UserController extends Controller
                 }
                 break;
             }
+            case 'admin' : {
+                if (!is_null($request->password) && !is_null($request->password_confirmation)) {
+                    DB::table('users')
+                        ->where('id', $id)
+                        ->update([
+                            'name' => $request->name,
+                            'password' => Hash::make($request->password)
+                        ]);
+                } elseif (is_null($request->password) && is_null($request->password_confirmation)) {
+                    DB::table('users')
+                        ->where('id', $id)
+                        ->update([
+                            'name' => $request->name,
+                        ]);
+                }
+                break;
+            }
         }
 
         // file upload
@@ -186,13 +224,15 @@ class UserController extends Controller
 
         if ($role === 'restaurant') {
             return redirect()->route('dashboard', [Auth::id()]);
-        } else {
+        } elseif ($role === 'user') {
             return view('users.userProfile', [
                 'user' => User::find($id),
                 'show_navbar' => true,
                 'trans_navbar' => false,
                 'show_footer' => true
             ]);
+        } elseif ($role === 'admin') {
+            return redirect('admin');
         }
     }
 
